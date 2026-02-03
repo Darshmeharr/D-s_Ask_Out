@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Eeman</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("bg.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 22px;
+  animation: float 8s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 25px;
+  text-align: center;
+}
+
+/* Title */
+h1 {
+  font-size: 52px;
+  margin-bottom: 10px;
+}
+
+h1 span {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.12); }
+}
+
+.signature {
+  font-size: 15px;
+  opacity: 0.75;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+
+/* MAIN FLEX */
+.main {
+  display: flex;
+  justify-content: center; /* centered horizontally */
+  align-items: flex-end;   /* align frames to bottom of main */
+  gap: 40px;
+  flex-wrap: wrap;
+  position: relative;
+  min-height: 400px; /* ensures space for frames and emojis */
+}
+
+/* LEFT & RIGHT FRAMES */
+.frame {
+  width: 350px;
+  height: 420px;
+  border-radius: 25px;
+  border: 3px solid rgba(255, 80, 120, 0.85);
+  box-shadow:
+    0 18px 45px rgba(0,0,0,0.6),
+    0 0 18px rgba(255, 80, 110, 0.25);
+  overflow: hidden;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s ease;
+}
+
+.frame img:hover {
+  transform: scale(1.05);
+}
+
+/* MIDDLE: Poem + Buttons */
+.middle {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Poem */
+.poem {
+  font-size: 18px;
+  line-height: 1.9;
+  opacity: 0.93;
+  margin-bottom: 20px;
+}
+
+/* Valentine question above buttons */
+.question {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+/* Icons (YES / NO) */
+.icons {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  position: relative;
+}
+
+.icon {
+  font-size: 60px;
+  cursor: pointer;
+  transition: transform 0.3s ease, left 0.6s ease, top 0.6s ease;
+  position: relative;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+/* Moon running away */
+.icon.moon:hover {
+  animation: runAway 1s forwards;
+}
+
+@keyframes runAway {
+  0% { left: 0; top: 0; opacity: 1; }
+  100% { left: 200px; top: -50px; opacity: 0; }
+}
+
+#response {
+  margin-top: 20px;
+  font-size: 19px;
+  min-height: 45px;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .frame {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .middle {
+    max-width: 90%;
+    margin-top: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Autoplay Music -->
+<audio autoplay loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <h1>EEMAN KAUR <span>❤️</span></h1>
+  <p class="signature">from Darshmehar Singh to Eemanjot Kaur</p>
+
+  <div class="main">
+
+    <!-- LEFT FRAME -->
+    <div class="frame">
+      <img src="image1.jpg" alt="Memory One">
+    </div>
+
+    <!-- MIDDLE: Poem + Buttons -->
+    <div class="middle">
+      <div class="poem">
+        I don’t know when admiration<br>
+        quietly became affection,<br>
+        but somewhere between moments and silence,<br>
+        you stayed.<br><br>
+
+        Not as a passing thought,<br>
+        but as something gentle and certain,<br>
+        something I didn’t want to rush,<br>
+        or ruin with careless words.<br><br>
+
+        This isn’t built on noise or pressure,<br>
+        just honesty <br>
+        asking if our paths could align,<br>
+        even for a moment.
+      </div>
+
+      <div class="question">Will you be my Valentine?</div>
+
+      <div class="icons">
+        <div class="icon" onclick="yesClicked()">💖</div>
+        <div class="icon moon" onclick="noClicked()">🌙</div>
+      </div>
+
+      <div id="response"></div>
+    </div>
+
+    <!-- RIGHT FRAME -->
+    <div class="frame">
+      <img src="image2.jpg" alt="Memory Two">
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function yesClicked() {
+  document.getElementById("response").innerHTML =
+    "You just made something beautiful happen 🤍";
+
+  setTimeout(() => {
+    window.location.href =
+      "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
+  }, 1500);
+}
+
+function noClicked() {
+  document.getElementById("response").innerHTML =
+    "That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
+  
+  // Reset moon after animation
+  const moon = document.querySelector(".icon.moon");
+  setTimeout(() => {
+    moon.style.left = "0";
+    moon.style.top = "0";
+    moon.style.opacity = "1";
+  }, 1200);
+}
+
+// Floating hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 8000);
+}, 600);
+</script>
+
+</body>
+</html>
