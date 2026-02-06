@@ -21,7 +21,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: url('heart-cursor.png'), auto;
 }
 
 .container {
@@ -183,7 +182,7 @@ h1 span {
 
 @keyframes float { to { transform: translateY(-110vh); opacity: 0; } }
 
-/* Petals / confetti */
+/* Falling petals */
 .petal {
   position: fixed;
   font-size: 18px;
@@ -196,6 +195,7 @@ h1 span {
 }
 
 @keyframes fadeIn { to { opacity: 1; } }
+
 </style>
 </head>
 
@@ -207,7 +207,7 @@ h1 span {
 </audio>
 
 <audio id="apSong" loop>
-  <source src="thinking-of-you.mp3" type="audio/mpeg">
+  <source src="thinking-of-you-ap-dhillon.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -247,7 +247,8 @@ h1 span {
       <div class="icon" onclick="noClicked()">🌙</div>
     </div>
 
-    <button class="play-btn" onclick="playApSong()">
+    <!-- Play button -->
+    <button id="playButton" class="play-btn" onclick="toggleApSong()">
       ▶ Play: Thinking Of You – AP Dhillon
     </button>
 
@@ -272,16 +273,9 @@ h1 span {
 <script>
 const mainSong = document.getElementById("mainSong");
 const apSong = document.getElementById("apSong");
+const playButton = document.getElementById("playButton");
 
-// Try autoplay on page load, fallback on click
-function playMusicOnInteraction() {
-  mainSong.play().catch(()=>{});
-  apSong.play().catch(()=>{});
-  document.removeEventListener('click', playMusicOnInteraction);
-}
-window.addEventListener('load', playMusicOnInteraction);
-document.addEventListener('click', playMusicOnInteraction);
-
+// Stop all other songs
 function stopAllMusic() {
   document.querySelectorAll("audio").forEach(a => {
     a.pause();
@@ -289,20 +283,30 @@ function stopAllMusic() {
   });
 }
 
-function playApSong() {
-  stopAllMusic();
-  apSong.play().catch(()=>{});
+// Toggle Thinking Of You song
+function toggleApSong() {
+  if (apSong.paused) {
+    stopAllMusic();       // stop main song if playing
+    apSong.play().catch(() => {});
+    playButton.textContent = "⏸ Playing: Thinking Of You – AP Dhillon";
+  } else {
+    apSong.pause();
+    playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
+  }
 }
 
-// Yes clicked - show popup + animated hearts
+// Optional: reset button text when song ends
+apSong.addEventListener("ended", () => {
+  playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
+});
+
+// Yes clicked - show popup + floating hearts
 function yesClicked() {
   stopAllMusic();
   mainSong.play().catch(()=>{});
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
-
   document.getElementById("emailPopup").style.display = "flex";
 
-  // Add floating hearts in popup
   for (let i = 0; i < 15; i++) {
     const heart = document.createElement("div");
     heart.className = "floatingHeart";
@@ -319,6 +323,7 @@ function noClicked() {
   document.getElementById("response").innerHTML = "That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
 }
 
+// Send email
 function sendEmail() {
   window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
   document.getElementById("emailPopup").style.display = "none";
