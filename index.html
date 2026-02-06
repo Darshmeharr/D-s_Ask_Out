@@ -158,6 +158,7 @@ h1 span {
   color: white;
   font-size: 18px;
   position: relative;
+  overflow: hidden; /* <- prevents pink dot */
 }
 
 #emailPopup button {
@@ -196,13 +197,14 @@ h1 span {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
+/* Popup text */
 #popupText {
   position: fixed;
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(255, 80, 120, 0.95);
-  color: #fffacd; /* brighter yellowish-white for visibility */
+  color: #fffacd; /* bright text */
   font-size: 22px;
   padding: 25px 35px;
   border-radius: 20px;
@@ -211,7 +213,7 @@ h1 span {
   text-align: center;
   line-height: 1.5;
   box-shadow: 0 0 25px rgba(255,80,120,0.9);
-  animation: popupFade 1s forwards;
+  overflow: hidden; /* <- ensures no stray pixels */
 }
 
 @keyframes popupFade { to { opacity: 1; } }
@@ -299,7 +301,6 @@ const apSong = document.getElementById("apSong");
 const playButton = document.getElementById("playButton");
 const popupText = document.getElementById("popupText");
 
-// Stop all other songs
 function stopAllMusic() {
   document.querySelectorAll("audio").forEach(a => {
     a.pause();
@@ -307,7 +308,6 @@ function stopAllMusic() {
   });
 }
 
-// Toggle Thinking Of You song
 function toggleApSong() {
   if (apSong.paused) {
     stopAllMusic();
@@ -323,13 +323,12 @@ apSong.addEventListener("ended", () => {
   playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
 });
 
-// Yes clicked - show popup + floating hearts
 function yesClicked() {
   stopAllMusic();
   mainSong.play().catch(()=>{});
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
 
-  // Show romantic popup with date, time & location
+  // Popup text
   popupText.innerHTML = `
     Today is February 6th, 2026! 💖<br>
     Wear something in <b>Magenta</b>, I'll be waiting on <b>top floor of SUB</b> at <b>2 PM</b>.<br>
@@ -337,7 +336,6 @@ function yesClicked() {
     <i>Every moment with you feels like a dream I never want to wake from 🌸</i>
   `;
   popupText.style.opacity = 1;
-
   setTimeout(() => popupText.style.opacity = 0, 12000);
 
   document.getElementById("emailPopup").style.display = "flex";
@@ -358,7 +356,6 @@ function noClicked() {
   document.getElementById("response").innerHTML = "That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
 }
 
-// Send email
 function sendEmail() {
   window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
   document.getElementById("emailPopup").style.display = "none";
@@ -382,6 +379,7 @@ setInterval(() => {
   petal.innerHTML = "🌸";
   petal.style.left = Math.random() * 100 + "vw";
   petal.style.animationDuration = (5 + Math.random()*5) + "s";
+  petal.style.top = "-50px"; // start above screen
   document.body.appendChild(petal);
   setTimeout(() => petal.remove(), 10000);
 }, 700);
