@@ -196,6 +196,23 @@ h1 span {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
+#popupText {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 80, 120, 0.9);
+  color: white;
+  font-size: 22px;
+  padding: 20px 30px;
+  border-radius: 20px;
+  z-index: 9999;
+  opacity: 0;
+  animation: popupFade 1s forwards;
+}
+
+@keyframes popupFade { to { opacity: 1; } }
+
 </style>
 </head>
 
@@ -209,6 +226,9 @@ h1 span {
 <audio id="apSong" loop>
   <source src="thinking-of-you.mp3" type="audio/mpeg">
 </audio>
+
+<!-- Popup text -->
+<div id="popupText"></div>
 
 <div class="container">
 <h1>EEMAN KAUR <span>❤️</span></h1>
@@ -274,6 +294,7 @@ h1 span {
 const mainSong = document.getElementById("mainSong");
 const apSong = document.getElementById("apSong");
 const playButton = document.getElementById("playButton");
+const popupText = document.getElementById("popupText");
 
 // Stop all other songs
 function stopAllMusic() {
@@ -286,7 +307,7 @@ function stopAllMusic() {
 // Toggle Thinking Of You song
 function toggleApSong() {
   if (apSong.paused) {
-    stopAllMusic();       // stop main song if playing
+    stopAllMusic();
     apSong.play().catch(() => {});
     playButton.textContent = "⏸ Playing: Thinking Of You – AP Dhillon";
   } else {
@@ -295,7 +316,6 @@ function toggleApSong() {
   }
 }
 
-// Optional: reset button text when song ends
 apSong.addEventListener("ended", () => {
   playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
 });
@@ -305,6 +325,18 @@ function yesClicked() {
   stopAllMusic();
   mainSong.play().catch(()=>{});
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
+
+  // Show romantic popup with date & instructions
+  popupText.innerHTML = `
+    Today is February 6th, 2026! 💖<br>
+    Wear something in <b>Magenta</b>, I'll be waiting on <b>SUB 2nd floor</b>.<br>
+    Come all alone...<br>
+    <i>Every moment with you feels like a dream I never want to wake from 🌸</i>
+  `;
+  popupText.style.opacity = 1;
+
+  setTimeout(() => popupText.style.opacity = 0, 12000);
+
   document.getElementById("emailPopup").style.display = "flex";
 
   for (let i = 0; i < 15; i++) {
