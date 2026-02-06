@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>For Eeman</title>
+
 <style>
 * { box-sizing: border-box; }
 
@@ -122,6 +123,11 @@ h1 span {
 .icon {
   font-size: 60px;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
 }
 
 #response {
@@ -151,12 +157,12 @@ h1 span {
 
 <body>
 
-<!-- Existing / background song (click-based) -->
+<!-- HEART CLICK SONG -->
 <audio id="mainSong" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<!-- AP Dhillon song -->
+<!-- AP DHILLON SONG -->
 <audio id="apSong" loop>
   <source src="thinking-of-you-ap-dhillon.mp3" type="audio/mpeg">
 </audio>
@@ -168,16 +174,29 @@ h1 span {
 
 <div class="main">
 
+  <!-- LEFT FRAME -->
   <div class="frame">
     <img src="image1.JPG">
   </div>
 
+  <!-- MIDDLE -->
   <div class="middle">
+
     <div class="poem">
       I don’t know when admiration<br>
       quietly became affection,<br>
       but somewhere between moments and silence,<br>
       you stayed.<br><br>
+
+      Not as a passing thought,<br>
+      but as something gentle and certain,<br>
+      something I didn’t want to rush,<br>
+      or ruin with careless words.<br><br>
+
+      This isn’t built on noise or pressure,<br>
+      just honesty—<br>
+      asking if our paths could align,<br>
+      even for a moment.<br><br>
 
       SONG — <b>Thinking Of You · AP Dhillon</b>
     </div>
@@ -189,7 +208,6 @@ h1 span {
       <div class="icon" onclick="noClicked()">🌙</div>
     </div>
 
-    <!-- NEW BUTTON -->
     <button class="play-btn" onclick="playApSong()">
       ▶ Play: Thinking Of You – AP Dhillon
     </button>
@@ -197,6 +215,7 @@ h1 span {
     <div id="response"></div>
   </div>
 
+  <!-- RIGHT FRAME -->
   <div class="frame">
     <img src="image2.JPG">
   </div>
@@ -223,7 +242,6 @@ function playApSong() {
 function yesClicked() {
   stopAllMusic();
   mainSong.play().catch(()=>{});
-
   document.getElementById("response").innerHTML =
     "You just made something beautiful happen 🤍";
 }
