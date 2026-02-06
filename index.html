@@ -123,7 +123,7 @@ h1 span {
 .icon {
   font-size: 60px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: transform 0.3s;
 }
 
 .icon:hover {
@@ -157,14 +157,14 @@ h1 span {
 
 <body>
 
-<!-- HEART CLICK SONG -->
+<!-- Heart click song -->
 <audio id="mainSong" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<!-- AP DHILLON SONG -->
+<!-- AP Dhillon song -->
 <audio id="apSong" loop>
-  <source src="thinking-of-you.mp3" type="audio/mpeg">
+  <source src="thinking-of-you-ap-dhillon.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -181,7 +181,6 @@ h1 span {
 
   <!-- MIDDLE -->
   <div class="middle">
-
     <div class="poem">
       I don’t know when admiration<br>
       quietly became affection,<br>
@@ -198,7 +197,7 @@ h1 span {
       asking if our paths could align,<br>
       even for a moment.<br><br>
 
-      <b>Thinking Of You </b>
+      SONG — <b>Thinking Of You · AP Dhillon</b>
     </div>
 
     <div class="question">Will you be my Valentine?</div>
@@ -242,8 +241,14 @@ function playApSong() {
 function yesClicked() {
   stopAllMusic();
   mainSong.play().catch(()=>{});
+
   document.getElementById("response").innerHTML =
     "You just made something beautiful happen 🤍";
+
+  setTimeout(() => {
+    window.location.href =
+      "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
+  }, 1500);
 }
 
 function noClicked() {
