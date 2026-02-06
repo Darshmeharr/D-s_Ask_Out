@@ -158,7 +158,7 @@ h1 span {
   color: white;
   font-size: 18px;
   position: relative;
-  overflow: hidden; /* <- prevents pink dot */
+  overflow: hidden; /* removes stray pink dot */
 }
 
 #emailPopup button {
@@ -213,10 +213,8 @@ h1 span {
   text-align: center;
   line-height: 1.5;
   box-shadow: 0 0 25px rgba(255,80,120,0.9);
-  overflow: hidden; /* <- ensures no stray pixels */
+  overflow: hidden; /* ensures no stray pixels */
 }
-
-@keyframes popupFade { to { opacity: 1; } }
 
 </style>
 </head>
@@ -308,21 +306,28 @@ function stopAllMusic() {
   });
 }
 
+// Play Thinking Of You on button click
 function toggleApSong() {
   if (apSong.paused) {
     stopAllMusic();
-    apSong.play().catch(() => {});
-    playButton.textContent = "⏸ Playing: Thinking Of You – AP Dhillon";
+    apSong.play().then(() => {
+      playButton.textContent = "⏸ Playing: Thinking Of You – AP Dhillon";
+    }).catch(err => {
+      console.log("Could not play Thinking Of You:", err);
+      alert("Cannot play the song! Check the file name or format.");
+    });
   } else {
     apSong.pause();
     playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
   }
 }
 
+// Optional: reset button text when song ends
 apSong.addEventListener("ended", () => {
   playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
 });
 
+// Yes clicked - show popup + floating hearts
 function yesClicked() {
   stopAllMusic();
   mainSong.play().catch(()=>{});
@@ -340,6 +345,7 @@ function yesClicked() {
 
   document.getElementById("emailPopup").style.display = "flex";
 
+  // Floating hearts inside popup
   for (let i = 0; i < 15; i++) {
     const heart = document.createElement("div");
     heart.className = "floatingHeart";
@@ -352,10 +358,12 @@ function yesClicked() {
   }
 }
 
+// No clicked
 function noClicked() {
   document.getElementById("response").innerHTML = "That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
 }
 
+// Send email
 function sendEmail() {
   window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
   document.getElementById("emailPopup").style.display = "none";
