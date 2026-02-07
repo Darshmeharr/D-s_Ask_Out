@@ -138,11 +138,10 @@ h1 span {
   transform: scale(1.05);
 }
 
-/* EMAIL BAR POSITIONED LOWER */
 #emailPopup {
   display: none;
   position: fixed;
-  left: 0; right: 0; bottom: 10%; /* Moved it to the bottom area */
+  left: 0; right: 0; bottom: 10%; 
   z-index: 10000;
   justify-content: center;
   align-items: center;
@@ -151,7 +150,7 @@ h1 span {
 #emailPopupContent {
   background: rgba(17, 17, 17, 0.9);
   padding: 15px 30px;
-  border-radius: 50px; /* Made it look more like a bar */
+  border-radius: 50px; 
   text-align: center;
   color: white;
   font-size: 16px;
@@ -192,7 +191,6 @@ h1 span {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* SKY BLUE POPUP BOX (MAIN INFO) */
 #popupText {
   position: fixed;
   top: 20%;
@@ -212,6 +210,7 @@ h1 span {
   overflow: hidden; 
   transition: opacity 0.5s;
   border: 2px solid #003366;
+  pointer-events: none;
 }
 </style>
 </head>
@@ -254,7 +253,7 @@ h1 span {
       asking if our paths could align,<br>
       even for a moment.<br><br>
 
-      <b>NEW MESSAGE CLICK HEART </b>
+      <b>NEW MESSAGE CLICK HEART</b>
     </div>
 
     <div class="question">Will you be my Valentine?</div>
@@ -265,7 +264,7 @@ h1 span {
     </div>
 
     <button id="playButton" class="play-btn" onclick="toggleApSong()">
-      ▶ Play: Batana - Zack Knight 
+      ▶ Play: Batana - Zack Knight
     </button>
 
     <div id="response"></div>
@@ -291,90 +290,21 @@ const playButton = document.getElementById("playButton");
 const popupText = document.getElementById("popupText");
 
 function stopAllMusic() {
-  document.querySelectorAll("audio").forEach(a => {
-    a.pause();
-    a.currentTime = 0;
-  });
+  mainSong.pause();
+  mainSong.currentTime = 0;
+  apSong.pause();
+  apSong.currentTime = 0;
 }
 
 function toggleApSong() {
   if (apSong.paused) {
     stopAllMusic();
     apSong.play().then(() => {
-      playButton.textContent = "⏸ Playing: Batana - Zack Knight ";
+      playButton.textContent = "⏸ Playing: Batana - Zack Knight";
     }).catch(err => {
-      console.log("Could not play Batana - Zack Knight :", err);
+      console.log("Audio Error:", err);
+      alert("Make sure Batana.mp3 is in the same folder as this file!");
     });
   } else {
     apSong.pause();
-    playButton.textContent = "▶ Play: Batana  - Zack Knight ";
-  }
-}
-
-function yesClicked() {
-  stopAllMusic();
-  mainSong.play().catch(()=>{});
-
-  document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
-
-  popupText.innerHTML = `
-    Today is February 7th, 2026! ❤️<br>
-    Wear something in <b>Blue</b>.<br>
-    I'll be waiting at <b>Mill Lake Bridge</b> at <b>7 PM</b>.<br>
-    I'll only be there for <b>20 minutes</b>, so don't be late...<br><br>
-    <i>"If the stars are just memories of light, <br> I’d rather write a new story with you tonight." 🌸</i>
-  `;
-  popupText.style.opacity = 1;
-
-  // DELAY THE EMAIL BAR SO IT APPEARS SLIGHTLY AFTER
-  setTimeout(() => {
-    document.getElementById("emailPopup").style.display = "flex";
-  }, 1000);
-
-  setTimeout(() => popupText.style.opacity = 0, 18000);
-
-  for (let i = 0; i < 15; i++) {
-    const heart = document.createElement("div");
-    heart.className = "floatingHeart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 80 + "vw";
-    heart.style.top = Math.random() * 60 + "vh";
-    heart.style.fontSize = (15 + Math.random()*25) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
-  }
-}
-
-function noClicked() {
-  document.getElementById("response").innerHTML = "That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
-}
-
-function sendEmail() {
-  window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
-  document.getElementById("emailPopup").style.display = "none";
-}
-
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (12 + Math.random()*25) + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 8000);
-}, 600);
-
-setInterval(() => {
-  const petal = document.createElement("div");
-  petal.className = "petal";
-  petal.innerHTML = "🌸";
-  petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = (5 + Math.random()*5) + "s";
-  petal.style.top = "-50px";
-  document.body.appendChild(petal);
-  setTimeout(() => petal.remove(), 10000);
-}, 700);
-</script>
-
-</body>
-</html>
+    playButton
