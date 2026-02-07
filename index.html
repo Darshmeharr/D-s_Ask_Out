@@ -5,178 +5,206 @@
 <title>For Eeman</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
-
-* { box-sizing: border-box; margin:0; padding:0; }
+* { box-sizing: border-box; }
 
 body {
+  margin: 0;
   min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("bg.JPG");
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("bg.JPG");
   background-size: cover;
   background-position: center;
   font-family: 'Poppins', sans-serif;
   color: white;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
 }
 
 .container {
   max-width: 1200px;
-  width: 95%;
   padding: 25px;
   text-align: center;
 }
 
 h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(48px, 8vw, 70px);
-  margin-bottom: 5px;
-  text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
+  font-size: 52px;
+  margin-bottom: 10px;
+  animation: fadeIn 2s ease forwards;
+  opacity: 0;
 }
 
-h1 span { animation: pulse 1.5s infinite; }
-@keyframes pulse { 50% { transform: scale(1.15); } }
+h1 span {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse { 50% { transform: scale(1.12); } }
 
 .signature {
-  font-size: 16px;
+  font-size: 15px;
+  opacity: 0.75;
   font-style: italic;
-  opacity: 0.8;
   margin-bottom: 40px;
+  animation: fadeIn 3s ease forwards;
+  opacity: 0;
 }
 
 .main {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 50px;
+  align-items: flex-end;
+  gap: 40px;
   flex-wrap: wrap;
-  position: relative;
 }
 
 .frame {
-  width: 280px;
-  height: 380px;
+  width: 320px;
+  height: 420px;
   border-radius: 25px;
   border: 3px solid rgba(255, 80, 120, 0.85);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.6);
   overflow: hidden;
-  transition: transform 0.6s;
+  transition: transform 0.5s;
 }
 
-.frame:hover { transform: scale(1.08) rotate(1deg); }
-.frame img { width: 100%; height: 100%; object-fit: cover; }
+.frame:hover {
+  transform: scale(1.05) rotate(1deg);
+}
 
-.poem-area {
-  flex: 1;
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.middle {
   max-width: 600px;
-  background: transparent;
-  padding: 25px 30px;
-  text-align: left;
 }
 
 .poem {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  line-height: 1.8;
-  color: #FFC0CB; /* Soft Romantic Pink */
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #D4AF37; /* soft gold */
+  opacity: 0;
+  animation: fadeInText 3s forwards;
 }
 
-.red-cue {
-  display: block;
-  margin-top: 25px;
-  font-weight: 700;
-  font-size: 20px;
-  color: #FF69B4; /* Hot Pink for Click Heart */
-  text-shadow: 0 0 12px rgba(0,0,0,0.8);
-  animation: pulse 1.5s infinite;
+@keyframes fadeInText { to { opacity: 1; } }
+
+.question {
+  font-size: 26px;
+  margin-bottom: 12px;
+  animation: fadeInText 4s forwards;
+  opacity: 0;
 }
 
 .icons {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  margin-top: 20px;
+  gap: 60px;
 }
 
 .icon {
-  font-size: 65px;
+  font-size: 60px;
   cursor: pointer;
-  transition: 0.4s;
-  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+  transition: 0.3s;
 }
 
-.icon:hover { transform: scale(1.2); filter: drop-shadow(0 0 25px white); }
+.icon:hover {
+  transform: scale(1.2);
+}
+
+#response {
+  margin-top: 18px;
+  min-height: 40px;
+}
 
 .play-btn {
-  margin-top: 20px;
-  padding: 12px 28px;
-  font-size: 16px;
+  margin-top: 18px;
+  padding: 12px 26px;
+  font-size: 15px;
   border-radius: 30px;
-  border: 1px solid rgba(255,255,255,0.5);
-  background: rgba(255, 0, 80, 0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.35);
   color: white;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.4s;
+  transition: 0.3s;
 }
 
-.play-btn:hover { background: rgba(255, 0, 80, 0.4); transform: scale(1.05); }
-
-/* Romantic Popup */
-#popupText {
-  position: fixed;
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, #ff8ccf, #ff66a3);
-  color: white;
-  font-size: 22px;
-  padding: 30px 35px;
-  border-radius: 35px;
-  z-index: 9999;
-  opacity: 0;
-  text-align: center;
-  line-height: 1.5;
-  box-shadow: 0 0 50px rgba(255, 105, 180, 0.8);
-  transition: opacity 0.5s;
+.play-btn:hover {
+  background: rgba(255,80,120,0.45);
+  transform: scale(1.05);
 }
 
-/* Send Email Button below popup */
-#sendEmailBtn {
-  position: fixed;
-  top: 55%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 28px;
-  border-radius: 25px;
-  border: none;
-  font-size: 18px;
-  font-weight: bold;
-  background: #ff4fa3;
-  color: white;
-  cursor: pointer;
-  z-index: 9999;
-  box-shadow: 0 0 25px rgba(255,105,180,0.7);
+/* Email popup */
+#emailPopup {
   display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-#sendEmailBtn:hover { background: #ff73b3; transform: scale(1.05); }
+#emailPopupContent {
+  background: #111;
+  padding: 25px 40px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  position: relative;
+  overflow: hidden; 
+}
 
-/* Floating hearts & petals */
-.heart, .floatingHeart { position: fixed; font-size: 22px; animation: float 8s linear infinite; opacity: 0.6; }
-@keyframes float { to { transform: translateY(-110vh) rotate(720deg); opacity: 0; } }
+#emailPopup button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  background: #ff5078;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
 
-.petal { position: fixed; font-size: 18px; color: pink; animation: fall linear infinite; }
+/* Floating hearts and Petals */
+.heart, .floatingHeart {
+  position: fixed;
+  font-size: 22px;
+  animation: float 8s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes float { to { transform: translateY(-110vh); opacity: 0; } }
+
+.petal {
+  position: fixed;
+  font-size: 18px;
+  color: pink;
+  animation: fall linear infinite;
+}
+
 @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
+@keyframes fadeIn { to { opacity: 1; } }
+
+.newMessage {
+  color: #FF0000; /* bright red */
+  font-weight: bold;
+}
 </style>
 </head>
 
 <body>
 
+<!-- AUDIO FILES -->
 <audio id="mainSong" loop>
   <source src="Rabb_jaane.mp3" type="audio/mpeg">
 </audio>
@@ -190,30 +218,20 @@ h1 span { animation: pulse 1.5s infinite; }
 <p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
 
 <div class="main">
-  <div class="frame" style="transform: rotate(-5deg);">
+
+  <div class="frame">
     <img src="image1.JPG">
   </div>
 
-  <div class="poem-area">
+  <div class="middle">
     <div class="poem">
-      I didn’t plan for my heart to wander your way,<br>
-      But in the quiet spaces between my thoughts,<br>
-      You found a home and chose to stay.<br><br>
-
-      Not as a spark that fades with the light,<br>
-      But as a steady flame through the night.<br>
-      Asking if I could spend my journey with you.<br><br>
-
-      Every smile you give, every word you say,<br>
-      Builds a little heaven in my everyday.<br>
-      Your laughter lingers, your gaze enchants,<br>
-      I fall again in this endless dance.<br><br>
-
-      In the stillness of my heart, you remain,<br>
-      A melody of joy, a balm to pain.<br><br>
-
-      <b class="red-cue">🌹 New Message: Click Heart</b>
+      For Miss Upcoming President, 🌟<br>
+      You’ll rock every step you take.<br>
+      Every smile, every dream, every goal—<br>
+      I’ll be here, cheering for you, always.
     </div>
+
+    <div class="question newMessage">New Message: Click Heart</div>
 
     <div class="icons">
       <div class="icon" onclick="yesClicked()">💖</div> 
@@ -227,108 +245,105 @@ h1 span { animation: pulse 1.5s infinite; }
     <div id="response"></div>
   </div>
 
-  <div class="frame" style="transform: rotate(4deg);">
+  <div class="frame">
     <img src="image2.JPG">
   </div>
+
 </div>
 </div>
 
-<div id="popupText"></div>
-<button id="sendEmailBtn" onclick="sendEmail()">Send Email 💌</button>
+<div id="emailPopup">
+  <div id="emailPopupContent">
+    <p>Your Valentine email is ready to be sent! 💌</p>
+    <button onclick="sendEmail()">Send Email</button>
+  </div>
+</div>
 
 <script>
 const mainSong = document.getElementById("mainSong");
 const batanaSong = document.getElementById("batanaSong");
 const playButton = document.getElementById("playButton");
-const popupText = document.getElementById("popupText");
-const sendBtn = document.getElementById("sendEmailBtn");
 
 function stopAllMusic() {
-  document.querySelectorAll("audio").forEach(a => { a.pause(); a.currentTime = 0; });
+  document.querySelectorAll("audio").forEach(a => {
+    a.pause();
+    a.currentTime = 0;
+  });
 }
 
 function toggleBatana() {
   if (batanaSong.paused) {
     stopAllMusic();
-    batanaSong.play().then(()=>playButton.textContent="⏸ Playing: Batana – Zack Knight");
+    batanaSong.play().then(() => {
+      playButton.textContent = "⏸ Playing: Batana – Zack Knight";
+    });
   } else {
     batanaSong.pause();
-    playButton.textContent="▶ Play: Batana – Zack Knight";
+    playButton.textContent = "▶ Play: Batana – Zack Knight";
   }
 }
 
 function yesClicked() {
   stopAllMusic();
   mainSong.play().catch(()=>{});
+
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
 
-  popupText.innerHTML = `
-    Today is February 7th, 2026! 💖<br>
-    Wear something in <b>Blue</b>.<br>
-    I'll be waiting at <b>Mill Lake Bridge</b> at <b>7 PM</b> for 20 minutes.<br><br>
-    Your smile lights up everything around you, and I can’t wait to see it in person. 🌸
+  // Email popup with romantic Mill Lake message
+  document.getElementById("emailPopup").style.display = "flex";
+  document.getElementById("emailPopupContent").innerHTML = `
+    <p>Your smile is radiant, just like always 💖<br>
+    Try to wear something in blue 🌟<br>
+    I'll be at Mill Lake waiting for you at 7 PM<br>
+    I'll be there for just 20 minutes, so please come alone.<br>
+    - From D.</p>
+    <button onclick="sendEmail()">Send Email</button>
   `;
-  popupText.style.opacity = 1;
-  sendBtn.style.display = "block";
 
-  setTimeout(()=>popupText.style.opacity=0,14000);
-
-  // Romantic hearts & petals
-  for(let i=0;i<25;i++){
-    const heart=document.createElement("div");
-    heart.className="floatingHeart";
-    heart.innerHTML="💖";
-    heart.style.left=Math.random()*90+"vw";
-    heart.style.top=Math.random()*60+"vh";
-    heart.style.fontSize=(20+Math.random()*30)+"px";
-    heart.style.animationDuration=(6+Math.random()*5)+"s";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),5000);
-  }
-
-  for(let i=0;i<20;i++){
-    const petal=document.createElement("div");
-    petal.className="petal";
-    petal.innerHTML="🌸";
-    petal.style.left=Math.random()*100+"vw";
-    petal.style.animationDuration=(4+Math.random()*5)+"s";
-    petal.style.top="-50px";
-    document.body.appendChild(petal);
-    setTimeout(()=>petal.remove(),12000);
+  // Floating hearts in popup
+  for (let i=0; i<15; i++){
+    const heart = document.createElement("div");
+    heart.className = "floatingHeart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random()*80 + "vw";
+    heart.style.top = Math.random()*60 + "vh";
+    heart.style.fontSize = (15 + Math.random()*25) + "px";
+    document.getElementById("emailPopup").appendChild(heart);
+    setTimeout(()=>heart.remove(),4000);
   }
 }
 
 function noClicked() {
-  document.getElementById("response").innerHTML="That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
+  document.getElementById("response").innerHTML = "That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
 }
 
 function sendEmail() {
-  window.location.href="mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine 💌";
-  sendBtn.style.display="none";
+  window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine. 💖 I'll be at Mill Lake at 7 PM waiting for you, wearing blue, just for 20 mins.";
+  document.getElementById("emailPopup").style.display = "none";
 }
 
-// Background cinematic hearts
+// Background Hearts
 setInterval(()=>{
-  const heart=document.createElement("div");
+  const heart = document.createElement("div");
   heart.className="heart";
   heart.innerHTML="❤️";
-  heart.style.left=Math.random()*100+"vw";
+  heart.style.left = Math.random()*100+"vw";
   heart.style.fontSize=(12+Math.random()*25)+"px";
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),8000);
-},400);
+},600);
 
-// Background falling petals
+// Falling Petals
 setInterval(()=>{
-  const petal=document.createElement("div");
+  const petal = document.createElement("div");
   petal.className="petal";
   petal.innerHTML="🌸";
-  petal.style.left=Math.random()*100+"vw";
-  petal.style.animationDuration=(4+Math.random()*6)+"s";
+  petal.style.left = Math.random()*100+"vw";
+  petal.style.animationDuration = (5+Math.random()*5)+"s";
   petal.style.top="-50px";
   document.body.appendChild(petal);
   setTimeout(()=>petal.remove(),10000);
-},500);
+},700);
 </script>
 
 </body>
