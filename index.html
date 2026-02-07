@@ -11,7 +11,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  /* --- YOUR BACKGROUND IMAGE --- */
+  /* THE MAIN BACKGROUND IMAGE */
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("bg.JPG");
   background-size: cover;
   background-position: center;
@@ -25,121 +25,124 @@ body {
 
 .container {
   width: 95%;
-  max-width: 1200px;
+  max-width: 1300px;
   text-align: center;
 }
 
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(40px, 8vw, 60px);
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+  font-size: clamp(45px, 8vw, 70px);
+  margin-bottom: 5px;
+  text-shadow: 3px 3px 20px rgba(0,0,0,0.8);
 }
 
 .main-layout {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
   flex-wrap: wrap;
+  margin-top: 30px;
 }
 
-/* --- POLAROID STYLE PHOTOS --- */
-.photo {
-  flex: 0 0 280px;
-  height: 380px;
+/* POLAROID STYLE PHOTOS ON THE SIDES */
+.photo-frame {
+  flex: 0 0 300px;
+  height: 400px;
   background: white;
-  padding: 10px 10px 40px 10px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-  transform: rotate(-3deg);
-  transition: 0.5s;
+  padding: 12px 12px 45px 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  transition: 0.5s ease-in-out;
 }
-.photo.right { transform: rotate(3deg); }
-.photo:hover { transform: rotate(0deg) scale(1.05); }
-.photo img { width: 100%; height: 100%; object-fit: cover; }
+.left-img { transform: rotate(-4deg); }
+.right-img { transform: rotate(4deg); }
+.photo-frame:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-/* --- TRANSPARENT POEM BOX --- */
-.poem-box {
+/* FULLY TRANSPARENT POEM AREA */
+.poem-area {
   flex: 1;
-  max-width: 500px;
-  padding: 40px;
-  border-radius: 20px;
-  
-  /* THIS MAKES IT TRANSPARENT & CLASSY */
-  background: rgba(255, 255, 255, 0.1); /* Very light white tint */
-  backdrop-filter: blur(12px);          /* Blurs the background image slightly */
-  -webkit-backdrop-filter: blur(12px);
-  
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  max-width: 550px;
+  background: transparent; /* No box, just space */
+  padding: 20px;
 }
 
 .poem-text {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1.8;
   color: #ffffff;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  /* Text shadow makes white text visible on any background image */
+  text-shadow: 2px 2px 8px rgba(0,0,0,1), 0px 0px 15px rgba(0,0,0,0.5);
 }
 
 .red-cue {
-  color: #ff4d4d;
+  color: #ff3e3e;
   font-weight: 700;
   display: block;
-  margin-top: 25px;
-  font-size: 18px;
-  letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
-  animation: pulse 2s infinite;
+  margin-top: 30px;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(0,0,0,1);
+  animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-.icons { display: flex; justify-content: center; gap: 50px; margin: 30px 0; }
-.heart-icon { font-size: 65px; cursor: pointer; transition: 0.3s; }
-.heart-icon:hover { transform: scale(1.2); filter: drop-shadow(0 0 15px white); }
+.icons { display: flex; justify-content: center; gap: 50px; margin: 35px 0; }
+.heart-btn { 
+  font-size: 75px; 
+  cursor: pointer; 
+  transition: 0.4s; 
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+}
+.heart-btn:hover { transform: scale(1.2); filter: drop-shadow(0 0 20px white); }
 
 .song-label {
   display: inline-block;
-  padding: 12px 25px;
-  border: 1px solid rgba(255,255,255,0.5);
-  border-radius: 30px;
-  background: rgba(0,0,0,0.3);
+  padding: 12px 30px;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 50px;
+  background: rgba(0,0,0,0.4);
   color: white;
   cursor: pointer;
-  font-size: 14px;
+  font-weight: 600;
   transition: 0.3s;
+  backdrop-filter: blur(5px);
 }
-.song-label:hover { background: white; color: black; }
+.song-label:hover { background: white; color: black; border-color: white; }
 
-/* --- SKY BLUE POPUP --- */
-#datePopup {
+/* THE SKY BLUE DATE INFO */
+#popupBox {
   position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
   background: #87CEFA; color: #003366; 
-  padding: 40px; border-radius: 15px; border: 5px double #003366;
-  text-align: center; z-index: 2000; display: none;
-  box-shadow: 0 0 100px rgba(0,0,0,0.8);
+  padding: 45px; border-radius: 20px; border: 6px double #003366;
+  text-align: center; z-index: 5000; display: none;
+  box-shadow: 0 0 100px rgba(0,0,0,0.9);
   font-family: 'Playfair Display', serif;
 }
 </style>
 </head>
 <body>
 
-<audio id="rabbSong" loop><source src="Rabb_jaane.mp3" type="audio/mpeg"></audio>
-<audio id="batanaSong" loop><source src="Batana.mp3" type="audio/mpeg"></audio>
+<audio id="rabb_jaane" loop><source src="Rabb_jaane.mp3" type="audio/mpeg"></audio>
+<audio id="batana" loop><source src="Batana.mp3" type="audio/mpeg"></audio>
 
 <div class="container">
-  <h1>EEMAN KAUR <span style="color:#ff4d4d">❤️</span></h1>
-  <p style="font-style: italic; opacity: 0.8; margin-bottom: 40px;">From Darshmehar Singh to Eemanjot Kaur</p>
+  <h1>EEMAN KAUR <span style="color:#ff3e3e">❤</span></h1>
+  <p style="font-style: italic; opacity: 0.9; margin-bottom: 20px; text-shadow: 1px 1px 5px black;">
+    From Darshmehar Singh to Eemanjot Kaur
+  </p>
 
   <div class="main-layout">
-    <div class="photo"><img src="image1.JPG"></div>
+    <div class="photo-frame left-img"><img src="image1.JPG"></div>
 
-    <div class="poem-box">
+    <div class="poem-area">
       <div class="poem-text">
         "I didn’t plan for my heart to wander your way,<br>
         But in the quiet spaces between my thoughts,<br>
@@ -147,72 +150,72 @@ h1 {
         Not as a spark that fades with the light,<br>
         But as a steady flame through the night.<br>
         Asking if I could spend my journey with you."
-        <span class="red-cue">🌹 NEW MESSAGE: CLICK THE HEART</span>
+        <span class="red-cue">🌹 Click the heart below</span>
       </div>
 
       <div class="icons">
-        <div class="heart-icon" onclick="handleYes()">💖</div>
-        <div class="heart-icon" onclick="handleNo()">🌙</div>
+        <div class="heart-btn" onclick="triggerYes()">💖</div>
+        <div class="heart-btn" onclick="triggerNo()">🌙</div>
       </div>
 
-      <div class="song-label" id="btn" onclick="toggleBatana()">
-        ▶ Now Playing: Batana - Zack Knight
+      <div class="song-label" id="musicStatus" onclick="playBatana()">
+        ▶ Play: Batana - Zack Knight
       </div>
       
-      <div id="msg" style="margin-top:15px; font-weight:600;"></div>
+      <div id="responseMsg" style="margin-top:20px; font-weight:700; font-size: 20px; text-shadow: 2px 2px 5px black;"></div>
     </div>
 
-    <div class="photo right"><img src="image2.JPG"></div>
+    <div class="photo-frame right-img"><img src="image2.JPG"></div>
   </div>
 </div>
 
-<div id="datePopup">
+<div id="popupBox">
   <h2 style="margin-top:0;">It's a Date! ❤️</h2>
-  <p style="font-size: 22px; font-weight:700;">
+  <p style="font-size: 24px; font-weight:800; line-height: 1.6;">
     Today is February 7th, 2026<br>
     Wear something in <span style="text-decoration: underline;">Blue</span>.<br>
     Location: Mill Lake Bridge<br>
     Time: 7:00 PM<br><br>
-    <i>"I'll only be there for 20 minutes... don't be late."</i>
+    <i style="font-size: 18px;">"I'll only be there for 20 minutes... don't be late."</i>
   </p>
-  <button onclick="this.parentElement.style.display='none'" style="padding:10px 20px; cursor:pointer;">Close</button>
+  <button onclick="this.parentElement.style.display='none'" style="padding:10px 25px; cursor:pointer; font-weight:bold; border-radius:10px;">Close</button>
 </div>
 
 <script>
-const rabb = document.getElementById("rabbSong");
-const batana = document.getElementById("batanaSong");
-const btn = document.getElementById("btn");
+const rabb = document.getElementById("rabb_jaane");
+const batanasong = document.getElementById("batana");
+const status = document.getElementById("musicStatus");
 
-function stopAll() {
+function silence() {
   rabb.pause(); rabb.currentTime = 0;
-  batana.pause(); batana.currentTime = 0;
+  batanasong.pause(); batanasong.currentTime = 0;
 }
 
-function toggleBatana() {
-  if (batana.paused) {
-    stopAll();
-    batana.play().catch(e => alert("Batana.mp3 missing"));
-    btn.textContent = "⏸ Pause: Batana";
+function playBatana() {
+  if (batanasong.paused) {
+    silence();
+    batanasong.play().catch(e => alert("Audio Error: Batana.mp3 not found."));
+    status.textContent = "⏸ Now Playing: Batana";
   } else {
-    batana.pause();
-    btn.textContent = "▶ Play: Batana";
+    batanasong.pause();
+    status.textContent = "▶ Play: Batana - Zack Knight";
   }
 }
 
-function handleYes() {
-  stopAll();
-  rabb.play().catch(e => console.log("Rabb Jaane missing"));
-  document.getElementById("msg").innerHTML = "You've made my world a lot brighter 🤍";
-  document.getElementById("datePopup").style.display = "block";
+function triggerYes() {
+  silence();
+  rabb.play().catch(e => console.log("Rabb Jaane file is missing."));
+  document.getElementById("responseMsg").innerHTML = "You've made my world a lot brighter 🤍";
+  document.getElementById("popupBox").style.display = "block";
   
-  // Triggers email redirect after 3 seconds
+  // Email redirect after 4 seconds
   setTimeout(() => {
     window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
-  }, 4000);
+  }, 5000);
 }
 
-function handleNo() {
-  document.getElementById("msg").innerHTML = "That's okay. 🤍";
+function triggerNo() {
+  document.getElementById("responseMsg").innerHTML = "I respect your heart. 🤍";
 }
 </script>
 
