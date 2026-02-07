@@ -63,7 +63,7 @@ h1 span {
   width: 320px;
   height: 420px;
   border-radius: 25px;
-  border: 3px solid rgba(0, 123, 255, 0.85); /* Changed border to Blue */
+  border: 3px solid rgba(255, 80, 120, 0.85); /* Original Magenta Border */
   box-shadow: 0 18px 45px rgba(0,0,0,0.6);
   overflow: hidden;
   transition: transform 0.5s;
@@ -134,7 +134,7 @@ h1 span {
 }
 
 .play-btn:hover {
-  background: rgba(0, 123, 255, 0.45); /* Changed hover to Blue */
+  background: rgba(255,80,120,0.45);
   transform: scale(1.05);
 }
 
@@ -167,7 +167,7 @@ h1 span {
   border-radius: 15px;
   border: none;
   cursor: pointer;
-  background: #007bff; /* Changed button to Blue */
+  background: #ff5078;
   color: white;
   font-weight: bold;
   font-size: 16px;
@@ -187,7 +187,7 @@ h1 span {
 .petal {
   position: fixed;
   font-size: 18px;
-  color: lightblue; /* Changed petals to light blue */
+  color: pink;
   animation: fall linear infinite;
 }
 
@@ -197,14 +197,14 @@ h1 span {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* Popup text - UPDATED TO BLUE */
+/* Popup text - NOW BLUE AS REQUESTED */
 #popupText {
   position: fixed;
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 80, 255, 0.95); /* Deep Blue Background */
-  color: #fff; 
+  background: rgba(0, 102, 204, 0.95); /* Blue background */
+  color: #fffacd; 
   font-size: 22px;
   padding: 25px 35px;
   border-radius: 20px;
@@ -212,7 +212,7 @@ h1 span {
   opacity: 0;
   text-align: center;
   line-height: 1.5;
-  box-shadow: 0 0 25px rgba(0, 123, 255, 0.9); /* Blue Glow */
+  box-shadow: 0 0 25px rgba(0, 102, 204, 0.8); /* Blue Glow */
   overflow: hidden; 
   transition: opacity 0.5s;
 }
@@ -232,7 +232,7 @@ h1 span {
 <div id="popupText"></div>
 
 <div class="container">
-<h1>EEMAN KAUR <span>💙</span></h1>
+<h1>EEMAN KAUR <span>❤️</span></h1>
 <p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
 
 <div class="main">
@@ -264,7 +264,7 @@ h1 span {
     <div class="question">Will you be my Valentine?</div>
 
     <div class="icons">
-      <div class="icon" onclick="yesClicked()">💙</div>
+      <div class="icon" onclick="yesClicked()">💖</div>
       <div class="icon" onclick="noClicked()">🌙</div>
     </div>
 
@@ -281,103 +281,3 @@ h1 span {
 
 </div>
 </div>
-
-<div id="emailPopup">
-  <div id="emailPopupContent">
-    <p>Your Valentine email is ready to be sent! 💌</p>
-    <button onclick="sendEmail()">Send Email</button>
-  </div>
-</div>
-
-<script>
-const mainSong = document.getElementById("mainSong"); 
-const apSong = document.getElementById("apSong");     
-const playButton = document.getElementById("playButton");
-const popupText = document.getElementById("popupText");
-
-function stopAllMusic() {
-  document.querySelectorAll("audio").forEach(a => {
-    a.pause();
-    a.currentTime = 0;
-  });
-}
-
-function toggleApSong() {
-  if (apSong.paused) {
-    stopAllMusic();
-    apSong.play().then(() => {
-      playButton.textContent = "⏸ Playing: Thinking Of You – AP Dhillon";
-    }).catch(err => {
-      console.log("Could not play Thinking Of You:", err);
-    });
-  } else {
-    apSong.pause();
-    playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
-  }
-}
-
-function yesClicked() {
-  stopAllMusic();
-  mainSong.play().catch(()=>{});
-
-  document.getElementById("response").innerHTML = "You just made something beautiful happen 💙";
-
-  // UPDATED TEXT AND PROMPT
-  popupText.innerHTML = `
-    Today is February 7th, 2026! 💙<br>
-    Wear something in <b>Blue</b>.<br>
-    I'll be waiting at <b>Mill Lake (Gurudwara side)</b> at <b>7 PM</b>.<br>
-    Come all alone...<br>
-    <i>Every moment with you feels like a dream I never want to wake from 🌊</i>
-  `;
-  popupText.style.opacity = 1;
-  setTimeout(() => popupText.style.opacity = 0, 15000);
-
-  document.getElementById("emailPopup").style.display = "flex";
-
-  // Blue floating hearts
-  for (let i = 0; i < 15; i++) {
-    const heart = document.createElement("div");
-    heart.className = "floatingHeart";
-    heart.innerHTML = "💙";
-    heart.style.left = Math.random() * 80 + "vw";
-    heart.style.top = Math.random() * 60 + "vh";
-    heart.style.fontSize = (15 + Math.random()*25) + "px";
-    document.getElementById("emailPopup").appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
-  }
-}
-
-function noClicked() {
-  document.getElementById("response").innerHTML = "That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
-}
-
-function sendEmail() {
-  window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
-  document.getElementById("emailPopup").style.display = "none";
-}
-
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "💙";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (12 + Math.random()*25) + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 8000);
-}, 600);
-
-setInterval(() => {
-  const petal = document.createElement("div");
-  petal.className = "petal";
-  petal.innerHTML = "❄️"; // Changed to snowflake/blue vibe
-  petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = (5 + Math.random()*5) + "s";
-  petal.style.top = "-50px";
-  document.body.appendChild(petal);
-  setTimeout(() => petal.remove(), 10000);
-}, 700);
-</script>
-
-</body>
-</html>
