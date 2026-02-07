@@ -36,7 +36,10 @@ h1 {
   opacity: 0;
 }
 
-h1 span { animation: pulse 1.5s infinite; }
+h1 span {
+  animation: pulse 1.5s infinite;
+}
+
 @keyframes pulse { 50% { transform: scale(1.12); } }
 
 .signature {
@@ -51,7 +54,7 @@ h1 span { animation: pulse 1.5s infinite; }
 .main {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 40px;
   flex-wrap: wrap;
 }
@@ -66,10 +69,19 @@ h1 span { animation: pulse 1.5s infinite; }
   transition: transform 0.5s;
 }
 
-.frame:hover { transform: scale(1.05) rotate(1deg); }
-.frame img { width: 100%; height: 100%; object-fit: cover; }
+.frame:hover {
+  transform: scale(1.05) rotate(1deg);
+}
 
-.middle { max-width: 600px; }
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.middle {
+  max-width: 600px;
+}
 
 .poem {
   font-size: 18px;
@@ -81,17 +93,36 @@ h1 span { animation: pulse 1.5s infinite; }
 
 @keyframes fadeInText { to { opacity: 1; } }
 
-.question { font-size: 26px; margin-bottom: 12px; animation: fadeInText 4s forwards; opacity: 0; }
+.question {
+  font-size: 26px;
+  margin-bottom: 12px;
+  animation: fadeInText 4s forwards;
+  opacity: 0;
+}
 
-.icons { display: flex; justify-content: center; gap: 60px; }
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
 
-.icon { font-size: 60px; cursor: pointer; transition: 0.3s; }
-.icon:hover { transform: scale(1.2); }
+.icon {
+  font-size: 60px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-#response { margin-top: 18px; min-height: 40px; }
+.icon:hover {
+  transform: scale(1.2);
+}
+
+#response {
+  margin-top: 18px;
+  min-height: 40px;
+}
 
 .play-btn {
-  margin-top: 18px;
+  margin-top: 12px;
   padding: 12px 26px;
   font-size: 15px;
   border-radius: 30px;
@@ -101,7 +132,11 @@ h1 span { animation: pulse 1.5s infinite; }
   cursor: pointer;
   transition: 0.3s;
 }
-.play-btn:hover { background: rgba(255,80,120,0.45); transform: scale(1.05); }
+
+.play-btn:hover {
+  background: rgba(255,80,120,0.45);
+  transform: scale(1.05);
+}
 
 /* Email popup */
 #emailPopup {
@@ -145,6 +180,7 @@ h1 span { animation: pulse 1.5s infinite; }
   animation: float 8s linear infinite;
   opacity: 0.6;
 }
+
 @keyframes float { to { transform: translateY(-110vh); opacity: 0; } }
 
 /* Falling petals */
@@ -154,7 +190,10 @@ h1 span { animation: pulse 1.5s infinite; }
   color: pink;
   animation: fall linear infinite;
 }
-@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); }
+}
 
 @keyframes fadeIn { to { opacity: 1; } }
 
@@ -176,22 +215,30 @@ h1 span { animation: pulse 1.5s infinite; }
   box-shadow: 0 0 25px rgba(255,80,120,0.9);
   overflow: hidden;
 }
+
 </style>
 </head>
 
 <body>
 
 <!-- Songs -->
+<audio id="rabbJaane" loop>
+  <source src="rabb-jaane.mp3" type="audio/mpeg">
+</audio>
+
 <audio id="song1" loop>
   <source src="thinking-of-you.mp3" type="audio/mpeg">
 </audio>
+
 <audio id="song2" loop>
   <source src="khaab.mp3" type="audio/mpeg">
 </audio>
+
 <audio id="song3" loop>
   <source src="gabru.mp3" type="audio/mpeg">
 </audio>
 
+<!-- Popup text -->
 <div id="popupText"></div>
 
 <div class="container">
@@ -199,6 +246,7 @@ h1 span { animation: pulse 1.5s infinite; }
 <p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
 
 <div class="main">
+
   <div class="frame">
     <img src="image1.JPG">
   </div>
@@ -216,7 +264,7 @@ h1 span { animation: pulse 1.5s infinite; }
       or ruin with careless words.<br><br>
 
       This isn’t built on noise or pressure,<br>
-      just honesty—<br>
+      just honestly—<br>
       asking if our paths could align,<br>
       even for a moment.
     </div>
@@ -228,10 +276,10 @@ h1 span { animation: pulse 1.5s infinite; }
       <div class="icon" onclick="noClicked()">🌙</div>
     </div>
 
-    <!-- Song buttons -->
-    <button class="play-btn" onclick="toggleSong('song1', this)">▶ Play: Thinking Of You</button>
-    <button class="play-btn" onclick="toggleSong('song2', this)">▶ Play: Khaab</button>
-    <button class="play-btn" onclick="toggleSong('song3', this)">▶ Play: Gabru</button>
+    <!-- Play buttons -->
+    <button class="play-btn" onclick="toggleSong('song1', this)">▶ Thinking Of You – AP Dhillon</button><br>
+    <button class="play-btn" onclick="toggleSong('song2', this)">▶ Khaab – Akhil</button><br>
+    <button class="play-btn" onclick="toggleSong('song3', this)">▶ Gabru – J Star</button>
 
     <div id="response"></div>
   </div>
@@ -239,6 +287,7 @@ h1 span { animation: pulse 1.5s infinite; }
   <div class="frame">
     <img src="image2.JPG">
   </div>
+
 </div>
 </div>
 
@@ -251,20 +300,18 @@ h1 span { animation: pulse 1.5s infinite; }
 </div>
 
 <script>
+const rabbJaane = document.getElementById("rabbJaane");
+const songs = ["song1","song2","song3"].map(id=>document.getElementById(id));
 const popupText = document.getElementById("popupText");
 
-function stopAllMusic() { document.querySelectorAll("audio").forEach(a=>{a.pause();a.currentTime=0;}); }
-
-function toggleSong(id, btn) {
-  const song = document.getElementById(id);
-  if(song.paused){ stopAllMusic(); song.play(); btn.textContent="⏸ Playing: "+btn.textContent.split(":")[1]; }
-  else { song.pause(); btn.textContent="▶ Play: "+btn.textContent.split(":")[1]; }
+function stopAllMusic() {
+  [...songs, rabbJaane].forEach(a=>{a.pause(); a.currentTime=0;});
 }
 
-// Yes clicked
+// Heart clicked plays Rabb Jaane
 function yesClicked() {
   stopAllMusic();
-  document.getElementById("song1").play().catch(()=>{});
+  rabbJaane.play().catch(()=>{});
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
 
   popupText.innerHTML = `
@@ -273,11 +320,12 @@ function yesClicked() {
     Come all alone...<br>
     <i>Every moment with you feels like a dream I never want to wake from 🌸</i>
   `;
-  popupText.style.opacity=1;
+  popupText.style.opacity = 1;
   setTimeout(()=>popupText.style.opacity=0,12000);
 
   document.getElementById("emailPopup").style.display="flex";
 
+  // Floating hearts inside popup
   for(let i=0;i<15;i++){
     const heart=document.createElement("div");
     heart.className="floatingHeart";
@@ -291,10 +339,27 @@ function yesClicked() {
 }
 
 // No clicked
-function noClicked() { document.getElementById("response").innerHTML="That’s okay. Some feelings are still beautiful, even when unreturned 🤍"; }
+function noClicked() {
+  document.getElementById("response").innerHTML="That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
+}
 
-// Send email - single line
-function sendEmail(){window.location.href="mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";document.getElementById("emailPopup").style.display="none";}
+// Send email
+function sendEmail() {
+  window.location.href="mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
+  document.getElementById("emailPopup").style.display="none";
+}
+
+// Play/pause buttons for other songs
+function toggleSong(id, btn){
+  const song = document.getElementById(id);
+  if(song.paused){
+    stopAllMusic();
+    song.play().then(()=>{ btn.textContent="⏸ Playing: "+btn.textContent.slice(2); });
+  } else {
+    song.pause();
+    btn.textContent="▶ "+btn.textContent.slice(2);
+  }
+}
 
 // Floating hearts background
 setInterval(()=>{
