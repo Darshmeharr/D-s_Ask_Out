@@ -7,10 +7,9 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin:0; padding:0; }
 
 body {
-  margin: 0;
   min-height: 100vh;
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("bg.JPG");
   background-size: cover;
@@ -37,10 +36,7 @@ h1 {
   text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
 }
 
-h1 span {
-  animation: pulse 1.5s infinite;
-}
-
+h1 span { animation: pulse 1.5s infinite; }
 @keyframes pulse { 50% { transform: scale(1.15); } }
 
 .signature {
@@ -70,25 +66,21 @@ h1 span {
 }
 
 .frame:hover { transform: scale(1.08) rotate(1deg); }
-
 .frame img { width: 100%; height: 100%; object-fit: cover; }
 
 .poem-area {
   flex: 1;
   max-width: 600px;
-  background: rgba(255, 255, 255, 0.08);
+  background: transparent;
   padding: 25px 30px;
-  border-radius: 25px;
-  box-shadow: 0 0 60px rgba(255,0,80,0.2);
   text-align: left;
-  backdrop-filter: blur(3px);
 }
 
 .poem {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
   line-height: 1.8;
-  color: #fffacd;
+  color: #FFC0CB; /* Soft Romantic Pink */
   text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
 }
 
@@ -97,7 +89,7 @@ h1 span {
   margin-top: 25px;
   font-weight: 700;
   font-size: 20px;
-  color: #ff3e3e;
+  color: #FF69B4; /* Hot Pink for Click Heart */
   text-shadow: 0 0 12px rgba(0,0,0,0.8);
   animation: pulse 1.5s infinite;
 }
@@ -116,10 +108,7 @@ h1 span {
   filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
 }
 
-.icon:hover {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 25px white);
-}
+.icon:hover { transform: scale(1.2); filter: drop-shadow(0 0 25px white); }
 
 .play-btn {
   margin-top: 20px;
@@ -134,83 +123,55 @@ h1 span {
   transition: 0.4s;
 }
 
-.play-btn:hover {
-  background: rgba(255, 0, 80, 0.4);
-  transform: scale(1.05);
-}
+.play-btn:hover { background: rgba(255, 0, 80, 0.4); transform: scale(1.05); }
 
-/* Email popup */
-#emailPopup {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-#emailPopupContent {
-  background: #111;
-  padding: 30px 45px;
-  border-radius: 20px;
-  text-align: center;
-  color: white;
-  font-size: 18px;
-  position: relative;
-}
-
-#emailPopup button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border-radius: 15px;
-  border: none;
-  cursor: pointer;
-  background: #ff5078;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-/* Floating hearts and petals */
-.heart, .floatingHeart {
-  position: fixed;
-  font-size: 22px;
-  animation: float 8s linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes float { to { transform: translateY(-110vh); opacity: 0; } }
-
-.petal {
-  position: fixed;
-  font-size: 18px;
-  color: pink;
-  animation: fall linear infinite;
-}
-
-@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
-
-/* Blue popup text */
+/* Romantic Popup */
 #popupText {
   position: fixed;
-  top: 20%;
+  top: 25%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 102, 204, 0.95);
-  color: #fffacd;
+  background: linear-gradient(135deg, #ff8ccf, #ff66a3);
+  color: white;
   font-size: 22px;
-  padding: 25px 35px;
-  border-radius: 20px;
+  padding: 30px 35px;
+  border-radius: 35px;
   z-index: 9999;
   opacity: 0;
   text-align: center;
   line-height: 1.5;
-  box-shadow: 0 0 25px rgba(0, 102, 204, 0.8);
-  overflow: hidden;
+  box-shadow: 0 0 50px rgba(255, 105, 180, 0.8);
   transition: opacity 0.5s;
 }
+
+/* Send Email Button below popup */
+#sendEmailBtn {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 28px;
+  border-radius: 25px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  background: #ff4fa3;
+  color: white;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 0 25px rgba(255,105,180,0.7);
+  display: none;
+}
+
+#sendEmailBtn:hover { background: #ff73b3; transform: scale(1.05); }
+
+/* Floating hearts & petals */
+.heart, .floatingHeart { position: fixed; font-size: 22px; animation: float 8s linear infinite; opacity: 0.6; }
+@keyframes float { to { transform: translateY(-110vh); opacity: 0; } }
+
+.petal { position: fixed; font-size: 18px; color: pink; animation: fall linear infinite; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
 </style>
 </head>
 
@@ -224,14 +185,11 @@ h1 span {
   <source src="Batana.mp3" type="audio/mpeg">
 </audio>
 
-<div id="popupText"></div>
-
 <div class="container">
 <h1>EEMAN KAUR <span>❤️</span></h1> 
 <p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
 
 <div class="main">
-
   <div class="frame" style="transform: rotate(-5deg);">
     <img src="image1.JPG">
   </div>
@@ -272,22 +230,18 @@ h1 span {
   <div class="frame" style="transform: rotate(4deg);">
     <img src="image2.JPG">
   </div>
-
 </div>
 </div>
 
-<div id="emailPopup">
-  <div id="emailPopupContent">
-    <p>Your Valentine email is ready to be sent! 💌</p>
-    <button onclick="sendEmail()">Send Email</button>
-  </div>
-</div>
+<div id="popupText"></div>
+<button id="sendEmailBtn" onclick="sendEmail()">Send Email 💌</button>
 
 <script>
 const mainSong = document.getElementById("mainSong");
 const batanaSong = document.getElementById("batanaSong");
 const playButton = document.getElementById("playButton");
 const popupText = document.getElementById("popupText");
+const sendBtn = document.getElementById("sendEmailBtn");
 
 function stopAllMusic() {
   document.querySelectorAll("audio").forEach(a => { a.pause(); a.currentTime = 0; });
@@ -309,16 +263,17 @@ function yesClicked() {
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
 
   popupText.innerHTML = `
-    Today is February 7th, 2026! 💙<br>
+    Today is February 7th, 2026! 💖<br>
     Wear something in <b>Blue</b>.<br>
     I'll be waiting at <b>Mill Lake Bridge</b> at <b>7 PM</b> for 20 minutes.<br><br>
-    Your smile lights up everything around you, and I can’t wait to see it in person. 🌸<br>
-    Every moment with you feels like a dream I never want to wake from. 💖
+    Your smile lights up everything around you, and I can’t wait to see it in person. 🌸
   `;
   popupText.style.opacity = 1;
-  setTimeout(()=>popupText.style.opacity=0,14000);
 
-  document.getElementById("emailPopup").style.display="flex";
+  // Show send email button below popup
+  sendBtn.style.display = "block";
+
+  setTimeout(()=>popupText.style.opacity=0,14000);
 
   for(let i=0;i<15;i++){
     const heart=document.createElement("div");
@@ -327,7 +282,7 @@ function yesClicked() {
     heart.style.left=Math.random()*80+"vw";
     heart.style.top=Math.random()*60+"vh";
     heart.style.fontSize=(15+Math.random()*25)+"px";
-    document.getElementById("emailPopup").appendChild(heart);
+    document.body.appendChild(heart);
     setTimeout(()=>heart.remove(),4000);
   }
 }
@@ -338,10 +293,10 @@ function noClicked() {
 
 function sendEmail() {
   window.location.href="mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine. 💖 I'll be at Mill Lake Bridge at 7 PM waiting for you.";
-  document.getElementById("emailPopup").style.display="none";
+  sendBtn.style.display="none";
 }
 
-// Floating Hearts
+// Floating hearts
 setInterval(()=>{
   const heart=document.createElement("div");
   heart.className="heart";
@@ -352,7 +307,7 @@ setInterval(()=>{
   setTimeout(()=>heart.remove(),8000);
 },600);
 
-// Falling Petals
+// Falling petals
 setInterval(()=>{
   const petal=document.createElement("div");
   petal.className="petal";
