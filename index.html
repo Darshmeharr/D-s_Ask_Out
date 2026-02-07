@@ -223,7 +223,7 @@ h1 span {
 </audio>
 
 <audio id="apSong" loop>
-  <source src="thinking-of-you.mp3" type="audio/mpeg">
+  <source src="Batana.mp3" type="audio/mpeg">
 </audio>
 
 <div id="popupText"></div>
@@ -254,7 +254,7 @@ h1 span {
       asking if our paths could align,<br>
       even for a moment.<br><br>
 
-      <b>Thinking Of You</b>
+      <b>NEW MESSAGE CLICK HEART </b>
     </div>
 
     <div class="question">Will you be my Valentine?</div>
@@ -265,7 +265,7 @@ h1 span {
     </div>
 
     <button id="playButton" class="play-btn" onclick="toggleApSong()">
-      ▶ Play: Thinking Of You – AP Dhillon
+      ▶ Play: Batana Na - Zack Knight 
     </button>
 
     <div id="response"></div>
@@ -301,13 +301,13 @@ function toggleApSong() {
   if (apSong.paused) {
     stopAllMusic();
     apSong.play().then(() => {
-      playButton.textContent = "⏸ Playing: Thinking Of You – AP Dhillon";
+      playButton.textContent = "⏸ Playing: Batana - Zack Knight ";
     }).catch(err => {
-      console.log("Could not play Thinking Of You:", err);
+      console.log("Could not play Batana - Zack Knight :", err);
     });
   } else {
     apSong.pause();
-    playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
+    playButton.textContent = "▶ Play: Batana Na - Zack Knight ";
   }
 }
 
