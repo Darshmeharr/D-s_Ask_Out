@@ -251,6 +251,7 @@ function stopAllMusic() {
   apSong.currentTime = 0;
 }
 
+// TOGGLES BATANA
 function toggleApSong() {
   if (apSong.paused) {
     stopAllMusic();
@@ -258,7 +259,7 @@ function toggleApSong() {
       playButton.textContent = "⏸ Playing: Batana - Zack Knight";
     }).catch(err => {
       console.log("Audio Error:", err);
-      alert("Please ensure 'Batana.mp3' is in the folder.");
+      alert("Please ensure 'Batana.mp3' is in the same folder as this file!");
     });
   } else {
     apSong.pause();
@@ -268,7 +269,7 @@ function toggleApSong() {
 
 function yesClicked() {
   stopAllMusic();
-  // FIXED: mainSong (Rabb_jaane.mp3) now plays when heart is clicked
+  // Rabb_jaane plays when Heart is clicked
   mainSong.play().catch(e => {
     console.log("Play failed:", e);
     alert("Please ensure 'Rabb_jaane.mp3' is in the folder.");
