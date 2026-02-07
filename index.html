@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>For Eeman</title>
 <style>
+/* --- FONT IMPORTS --- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
 
 * { box-sizing: border-box; }
@@ -11,9 +12,11 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("bg.JPG");
+  /* --- BACKGROUND IMAGE SETTINGS --- */
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("bg.JPG");
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   font-family: 'Poppins', sans-serif;
   color: white;
   overflow-x: hidden;
@@ -24,257 +27,231 @@ body {
 
 .container {
   width: 95%;
-  max-width: 1300px;
-  padding: 40px;
+  max-width: 1200px;
   text-align: center;
+  padding: 20px;
 }
 
+/* --- TOP TITLES --- */
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 60px;
-  margin-bottom: 5px;
-  letter-spacing: 3px;
-  animation: fadeIn 2s ease forwards;
-  opacity: 0;
+  font-size: clamp(40px, 8vw, 65px);
+  margin-bottom: 0;
 }
-
-h1 span { display: inline-block; animation: pulse 1.5s infinite; color: #ff5078; }
-@keyframes pulse { 50% { transform: scale(1.1); } }
-
 .signature {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  opacity: 0.9;
   font-style: italic;
-  margin-bottom: 50px;
-  animation: fadeIn 3s ease forwards;
-  opacity: 0;
+  opacity: 0.8;
+  margin-bottom: 40px;
 }
 
-.main-layout {
+/* --- FLEXBOX LAYOUT (LEFT IMG - CENTER TEXT - RIGHT IMG) --- */
+.main-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
-  flex-wrap: nowrap; /* Keeps pictures on sides */
+  gap: 30px;
+  flex-wrap: wrap; /* Allows stacking on small phones */
 }
 
-.frame {
-  flex: 0 0 320px;
-  height: 450px;
-  border-radius: 15px;
-  border: 8px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-  overflow: hidden;
-  transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* --- PHOTO FRAMES --- */
+.photo-frame {
+  flex: 0 0 280px;
+  height: 380px;
+  border: 10px solid white;
+  border-bottom: 40px solid white; /* Polaroid style */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+  transform: rotate(-2deg);
+  transition: 0.5s;
 }
-.frame:hover { transform: scale(1.03); border-color: rgba(255, 255, 255, 0.4); }
-.frame img { width: 100%; height: 100%; object-fit: cover; }
+.photo-frame.right { transform: rotate(2deg); }
+.photo-frame:hover { transform: rotate(0deg) scale(1.05); }
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-.middle-content {
+/* --- THE POEM BOX (GLASS EFFECT) --- */
+.poem-card {
   flex: 1;
-  max-width: 550px;
-  background: rgba(255, 255, 255, 0.92); /* Less transparent for elegance */
-  padding: 40px;
+  max-width: 500px;
+  /* Semi-transparent background for high text contrast */
+  background: rgba(255, 255, 255, 0.9); 
+  backdrop-filter: blur(10px);
+  padding: 40px 30px;
   border-radius: 20px;
-  color: #1a1a1a; /* Darker text for readability */
-  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,1);
+  color: #1a1a1a; /* Dark text for best readability */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-.poem {
+.poem-text {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.8;
-  margin-bottom: 30px;
-  color: #333;
+  margin-bottom: 20px;
 }
 
-.new-message-cue {
-  color: #d63031;
-  font-family: 'Poppins', sans-serif;
+/* --- NEW MESSAGE LABEL (RED) --- */
+.red-alert {
+  color: #e63946;
   font-weight: 700;
-  font-size: 18px;
   display: block;
   margin-top: 20px;
-  letter-spacing: 1px;
-  animation: softGlow 2s infinite alternate;
+  font-size: 18px;
+  animation: pulseLabel 1.5s infinite;
+}
+@keyframes pulseLabel {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-@keyframes softGlow {
-  from { text-shadow: 0 0 2px rgba(214, 48, 49, 0.2); }
-  to { text-shadow: 0 0 12px rgba(214, 48, 49, 0.6); transform: scale(1.02); }
-}
+/* --- BUTTONS & ICONS --- */
+.heart-icons { display: flex; justify-content: center; gap: 40px; margin: 20px 0; }
+.heart-btn { font-size: 60px; cursor: pointer; transition: 0.3s; }
+.heart-btn:hover { transform: scale(1.2); }
 
-.question { 
-  font-family: 'Playfair Display', serif;
-  font-size: 30px; 
-  margin: 25px 0; 
-  font-weight: 700; 
-  color: #1a1a1a;
-}
-
-.icons { display: flex; justify-content: center; gap: 60px; }
-.icon { font-size: 70px; cursor: pointer; transition: 0.4s; filter: grayscale(20%); }
-.icon:hover { transform: scale(1.2); filter: grayscale(0%); }
-
-.play-btn {
-  margin-top: 30px;
-  padding: 14px 35px;
-  border-radius: 5px;
-  border: 1px solid #1a1a1a;
-  background: transparent;
-  color: #1a1a1a;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
+.song-label {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 50px;
   cursor: pointer;
+  font-weight: 600;
   transition: 0.3s;
 }
-.play-btn:hover { background: #1a1a1a; color: white; }
+.song-label:hover { background: #1a1a1a; color: white; }
 
-/* BLUE DATE INFO BOX */
-#popupText {
-  position: fixed; top: 25%; left: 50%; transform: translateX(-50%);
-  background: #87CEFA; color: #003366; 
-  font-size: 22px; font-weight: 700; padding: 35px 50px; border-radius: 10px;
-  z-index: 9999; opacity: 0; text-align: center; line-height: 1.7;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5); transition: 0.8s;
-  border: 4px double #003366; pointer-events: none;
-  font-family: 'Playfair Display', serif;
+/* --- POPUP DATE INFO --- */
+#popupDate {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background: #87CEFA; /* Sky Blue */
+  color: #003366; 
+  padding: 40px; border-radius: 15px; border: 4px solid #003366;
+  text-align: center; z-index: 2000; opacity: 0; visibility: hidden;
+  transition: 0.5s; width: 90%; max-width: 500px;
+  box-shadow: 0 0 100px rgba(0,0,0,0.8);
 }
+#popupDate.active { opacity: 1; visibility: visible; }
 
-#emailPopup { display: none; position: fixed; left: 0; right: 0; bottom: 8%; z-index: 10000; justify-content: center; }
-#emailPopupContent {
-  background: #1a1a1a; padding: 20px 40px; border-radius: 10px; 
-  color: white; border-left: 5px solid #ff5078; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-#emailPopup button {
-  margin-left: 20px; padding: 10px 30px; border: none;
-  background: #ff5078; color: white; font-weight: bold; cursor: pointer;
-}
-
-.heart { position: fixed; animation: float 10s linear infinite; z-index: 1; opacity: 0.5; }
-@keyframes float { 
-    0% { transform: translateY(110vh) rotate(0deg); }
-    100% { transform: translateY(-110vh) rotate(360deg); } 
-}
-@keyframes fadeIn { to { opacity: 1; } }
-
-/* Responsive for mobile */
-@media (max-width: 900px) {
-  .main-layout { flex-direction: column; }
-  .frame { width: 100%; max-width: 320px; height: 400px; }
+#emailBar {
+  display: none; position: fixed; bottom: 5%; left: 50%; transform: translateX(-50%);
+  background: #1a1a1a; color: white; padding: 15px 30px; border-radius: 50px;
+  z-index: 3000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 </style>
 </head>
 <body>
 
-<audio id="mainSong" loop><source src="Rabb_jaane.mp3" type="audio/mpeg"></audio>
-<audio id="apSong" loop><source src="Batana.mp3" type="audio/mpeg"></audio>
-
-<div id="popupText"></div>
+<audio id="heartSong" loop><source src="Rabb_jaane.mp3" type="audio/mpeg"></audio>
+<audio id="manualSong" loop><source src="Batana.mp3" type="audio/mpeg"></audio>
 
 <div class="container">
-  <h1>EEMAN KAUR <span>❤</span></h1>
+  
+  <h1>EEMAN KAUR <span style="color:#e63946">❤</span></h1>
   <p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
 
-  <div class="main-layout">
-    <div class="frame"><img src="image1.JPG"></div>
+  <div class="main-wrapper">
+    
+    <div class="photo-frame"><img src="image1.JPG" alt="Us"></div>
 
-    <div class="middle-content">
-      <div class="poem">
+    <div class="poem-card">
+      <div class="poem-text">
         "I didn’t plan for my heart to wander your way,<br>
         But in the quiet spaces between my thoughts,<br>
         You found a home and chose to stay.<br><br>
         Not as a spark that fades with the light,<br>
-        But as a steady flame through the coldest night.<br>
-        This is just me, simply being true—<br>
-        Asking if I could spend my journey with you."<br>
-        <span class="new-message-cue">❤ NEW MESSAGE: CLICK THE HEART</span>
+        But as a steady flame through the night.<br>
+        Asking if I could spend my journey with you."
+        <span class="red-alert">💌 NEW MESSAGE: CLICK THE HEART BELOW</span>
       </div>
 
-      <div class="question">Will you be my Valentine?</div>
+      <h2 style="font-family:'Playfair Display';">Will you be my Valentine?</h2>
 
-      <div class="icons">
-        <div class="icon" onclick="yesClicked()">💖</div>
-        <div class="icon" onclick="noClicked()">🌙</div>
+      <div class="heart-icons">
+        <div class="heart-btn" onclick="sayYes()">💖</div>
+        <div class="heart-btn" onclick="sayNo()">🌙</div>
       </div>
 
-      <button id="playButton" class="play-btn" onclick="toggleApSong()">▶ LISTENING: Batana - Zack Knight</button>
-      <div id="response" style="margin-top: 15px; font-weight: bold;"></div>
+      <div class="song-label" id="songBtn" onclick="toggleManualSong()">
+        ▶ Now Playing: Batana - Zack Knight
+      </div>
+      
+      <div id="statusUpdate" style="margin-top:15px; font-weight:bold;"></div>
     </div>
 
-    <div class="frame"><img src="image2.JPG"></div>
+    <div class="photo-frame right"><img src="image2.JPG" alt="Us"></div>
+
   </div>
 </div>
 
-<div id="emailPopup">
-  <div id="emailPopupContent">
-    Your Valentine confirmation is ready... 💌
-    <button onclick="sendEmail()">SEND NOW</button>
-  </div>
+<div id="popupDate">
+  <h2 style="margin-top:0;">It's a Date! ❤️</h2>
+  <p style="font-size: 1.2rem;">
+    Today is February 7th, 2026<br>
+    Please wear something in <b>Blue</b>.<br>
+    Location: <b>Mill Lake Bridge</b><br>
+    Time: <b>7:00 PM</b><br><br>
+    <i>"I'll only be there for 20 minutes... don't be late."</i>
+  </p>
+  <button onclick="closePopup()" style="padding:10px 20px; cursor:pointer;">Close</button>
+</div>
+
+<div id="emailBar">
+  Confirmation ready! 💌 
+  <button onclick="sendMail()" style="background:#e63946; color:white; border:none; padding:8px 15px; border-radius:20px; cursor:pointer; margin-left:10px;">Send Email</button>
 </div>
 
 <script>
-const mainSong = document.getElementById("mainSong");
-const apSong = document.getElementById("apSong");
-const playButton = document.getElementById("playButton");
-const popupText = document.getElementById("popupText");
+const heartSong = document.getElementById("heartSong");
+const manualSong = document.getElementById("manualSong");
+const songBtn = document.getElementById("songBtn");
 
-function stopAll() {
-  mainSong.pause(); mainSong.currentTime = 0;
-  apSong.pause(); apSong.currentTime = 0;
+// --- FUNCTIONS ---
+
+function stopMusic() {
+  heartSong.pause(); heartSong.currentTime = 0;
+  manualSong.pause(); manualSong.currentTime = 0;
 }
 
-function toggleApSong() {
-  if (apSong.paused) {
-    stopAll();
-    apSong.play().catch(err => alert("Audio File 'Batana.mp3' not found in folder."));
-    playButton.textContent = "⏸ PAUSE: Batana";
+// Logic for manual Batana button
+function toggleManualSong() {
+  if (manualSong.paused) {
+    stopMusic();
+    manualSong.play().catch(e => alert("File 'Batana.mp3' not found."));
+    songBtn.textContent = "⏸ Pause: Batana";
   } else {
-    apSong.pause();
-    playButton.textContent = "▶ PLAY: Batana";
+    manualSong.pause();
+    songBtn.textContent = "▶ Play: Batana";
   }
 }
 
-function yesClicked() {
-  stopAll();
-  mainSong.play().catch(e => console.log("Rabb_jaane.mp3 missing"));
+// Logic for Yes Heart (Plays Rabb Jaane)
+function sayYes() {
+  stopMusic();
+  heartSong.play().catch(e => console.log("Rabb Jaane file missing"));
   
-  document.getElementById("response").innerHTML = "You've made my world a lot brighter 🤍";
-  document.getElementById("response").style.color = "#d63031";
-
-  popupText.innerHTML = `
-    Today is February 7th, 2026 ❤️<br>
-    Wear something in <b style="color:#003366; text-decoration:underline;">Blue</b>.<br>
-    I'll be waiting at <b>Mill Lake Bridge</b> at <b>7 PM</b>.<br>
-    I'll only be there for <b>20 minutes</b>... don't be late.<br><br>
-    <i style="font-size:18px;">"If the stars are just memories of light, <br> I’d rather write a new story with you tonight." 🌸</i>
-  `;
-  popupText.style.opacity = 1;
-
-  setTimeout(() => { document.getElementById("emailPopup").style.display = "flex"; }, 2500);
-  setTimeout(() => { popupText.style.opacity = 0; }, 20000);
+  document.getElementById("statusUpdate").innerHTML = "You just made my world better. 🤍";
+  document.getElementById("statusUpdate").style.color = "#e63946";
+  
+  // Show Date Info
+  document.getElementById("popupDate").classList.add("active");
+  
+  // Show Email Bar
+  setTimeout(() => {
+    document.getElementById("emailBar").style.display = "block";
+  }, 2000);
 }
 
-function noClicked() { 
-    document.getElementById("response").innerHTML = "That’s okay. Your happiness matters most. 🤍"; 
+function sayNo() {
+  document.getElementById("statusUpdate").innerHTML = "I respect your choice. 🤍";
+  document.getElementById("statusUpdate").style.color = "#555";
 }
 
-function sendEmail() {
+function closePopup() {
+  document.getElementById("popupDate").classList.remove("active");
+}
+
+function sendMail() {
   window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
 }
-
-// Background Floating Hearts
-setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "heart"; h.innerHTML = "❤";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = (15 + Math.random()*20) + "px";
-  h.style.color = "rgba(255,255,255,0.3)";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 10000);
-}, 1000);
 </script>
 
 </body>
