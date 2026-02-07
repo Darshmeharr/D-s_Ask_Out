@@ -36,10 +36,7 @@ h1 {
   opacity: 0;
 }
 
-h1 span {
-  animation: pulse 1.5s infinite;
-}
-
+h1 span { animation: pulse 1.5s infinite; }
 @keyframes pulse { 50% { transform: scale(1.12); } }
 
 .signature {
@@ -69,19 +66,10 @@ h1 span {
   transition: transform 0.5s;
 }
 
-.frame:hover {
-  transform: scale(1.05) rotate(1deg);
-}
+.frame:hover { transform: scale(1.05) rotate(1deg); }
+.frame img { width: 100%; height: 100%; object-fit: cover; }
 
-.frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.middle {
-  max-width: 600px;
-}
+.middle { max-width: 600px; }
 
 .poem {
   font-size: 18px;
@@ -93,33 +81,14 @@ h1 span {
 
 @keyframes fadeInText { to { opacity: 1; } }
 
-.question {
-  font-size: 26px;
-  margin-bottom: 12px;
-  animation: fadeInText 4s forwards;
-  opacity: 0;
-}
+.question { font-size: 26px; margin-bottom: 12px; animation: fadeInText 4s forwards; opacity: 0; }
 
-.icons {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-}
+.icons { display: flex; justify-content: center; gap: 60px; }
 
-.icon {
-  font-size: 60px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+.icon { font-size: 60px; cursor: pointer; transition: 0.3s; }
+.icon:hover { transform: scale(1.2); }
 
-.icon:hover {
-  transform: scale(1.2);
-}
-
-#response {
-  margin-top: 18px;
-  min-height: 40px;
-}
+#response { margin-top: 18px; min-height: 40px; }
 
 .play-btn {
   margin-top: 18px;
@@ -132,11 +101,7 @@ h1 span {
   cursor: pointer;
   transition: 0.3s;
 }
-
-.play-btn:hover {
-  background: rgba(255,80,120,0.45);
-  transform: scale(1.05);
-}
+.play-btn:hover { background: rgba(255,80,120,0.45); transform: scale(1.05); }
 
 /* Email popup */
 #emailPopup {
@@ -158,7 +123,7 @@ h1 span {
   color: white;
   font-size: 18px;
   position: relative;
-  overflow: hidden; /* removes stray pink dot */
+  overflow: hidden;
 }
 
 #emailPopup button {
@@ -180,7 +145,6 @@ h1 span {
   animation: float 8s linear infinite;
   opacity: 0.6;
 }
-
 @keyframes float { to { transform: translateY(-110vh); opacity: 0; } }
 
 /* Falling petals */
@@ -190,10 +154,7 @@ h1 span {
   color: pink;
   animation: fall linear infinite;
 }
-
-@keyframes fall {
-  to { transform: translateY(110vh) rotate(360deg); }
-}
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
 @keyframes fadeIn { to { opacity: 1; } }
 
@@ -204,7 +165,7 @@ h1 span {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(255, 80, 120, 0.95);
-  color: #fffacd; /* bright text */
+  color: #fffacd;
   font-size: 22px;
   padding: 25px 35px;
   border-radius: 20px;
@@ -213,24 +174,24 @@ h1 span {
   text-align: center;
   line-height: 1.5;
   box-shadow: 0 0 25px rgba(255,80,120,0.9);
-  overflow: hidden; /* ensures no stray pixels */
+  overflow: hidden;
 }
-
 </style>
 </head>
 
 <body>
 
 <!-- Songs -->
-<audio id="mainSong" loop>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="apSong" loop>
+<audio id="song1" loop>
   <source src="thinking-of-you.mp3" type="audio/mpeg">
 </audio>
+<audio id="song2" loop>
+  <source src="khaab.mp3" type="audio/mpeg">
+</audio>
+<audio id="song3" loop>
+  <source src="gabru.mp3" type="audio/mpeg">
+</audio>
 
-<!-- Popup text -->
 <div id="popupText"></div>
 
 <div class="container">
@@ -238,7 +199,6 @@ h1 span {
 <p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
 
 <div class="main">
-
   <div class="frame">
     <img src="image1.JPG">
   </div>
@@ -258,9 +218,7 @@ h1 span {
       This isn’t built on noise or pressure,<br>
       just honesty—<br>
       asking if our paths could align,<br>
-      even for a moment.<br><br>
-
-      <b>Thinking Of You</b>
+      even for a moment.
     </div>
 
     <div class="question">Will you be my Valentine?</div>
@@ -270,10 +228,10 @@ h1 span {
       <div class="icon" onclick="noClicked()">🌙</div>
     </div>
 
-    <!-- Play button -->
-    <button id="playButton" class="play-btn" onclick="toggleApSong()">
-      ▶ Play: Thinking Of You – AP Dhillon
-    </button>
+    <!-- Song buttons -->
+    <button class="play-btn" onclick="toggleSong('song1', this)">▶ Play: Thinking Of You</button>
+    <button class="play-btn" onclick="toggleSong('song2', this)">▶ Play: Khaab</button>
+    <button class="play-btn" onclick="toggleSong('song3', this)">▶ Play: Gabru</button>
 
     <div id="response"></div>
   </div>
@@ -281,7 +239,6 @@ h1 span {
   <div class="frame">
     <img src="image2.JPG">
   </div>
-
 </div>
 </div>
 
@@ -294,103 +251,73 @@ h1 span {
 </div>
 
 <script>
-const mainSong = document.getElementById("mainSong");
-const apSong = document.getElementById("apSong");
-const playButton = document.getElementById("playButton");
 const popupText = document.getElementById("popupText");
 
-function stopAllMusic() {
-  document.querySelectorAll("audio").forEach(a => {
-    a.pause();
-    a.currentTime = 0;
-  });
+function stopAllMusic() { document.querySelectorAll("audio").forEach(a=>{a.pause();a.currentTime=0;}); }
+
+function toggleSong(id, btn) {
+  const song = document.getElementById(id);
+  if(song.paused){ stopAllMusic(); song.play(); btn.textContent="⏸ Playing: "+btn.textContent.split(":")[1]; }
+  else { song.pause(); btn.textContent="▶ Play: "+btn.textContent.split(":")[1]; }
 }
 
-// Play Thinking Of You on button click
-function toggleApSong() {
-  if (apSong.paused) {
-    stopAllMusic();
-    apSong.play().then(() => {
-      playButton.textContent = "⏸ Playing: Thinking Of You – AP Dhillon";
-    }).catch(err => {
-      console.log("Could not play Thinking Of You:", err);
-      alert("Cannot play the song! Check the file name or format.");
-    });
-  } else {
-    apSong.pause();
-    playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
-  }
-}
-
-// Optional: reset button text when song ends
-apSong.addEventListener("ended", () => {
-  playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
-});
-
-// Yes clicked - show popup + floating hearts
+// Yes clicked
 function yesClicked() {
   stopAllMusic();
-  mainSong.play().catch(()=>{});
+  document.getElementById("song1").play().catch(()=>{});
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
 
-  // Popup text
   popupText.innerHTML = `
     Today is February 6th, 2026! 💖<br>
     Wear something in <b>Magenta</b>, I'll be waiting on <b>top floor of SUB</b> at <b>2 PM</b>.<br>
     Come all alone...<br>
     <i>Every moment with you feels like a dream I never want to wake from 🌸</i>
   `;
-  popupText.style.opacity = 1;
-  setTimeout(() => popupText.style.opacity = 0, 12000);
+  popupText.style.opacity=1;
+  setTimeout(()=>popupText.style.opacity=0,12000);
 
-  document.getElementById("emailPopup").style.display = "flex";
+  document.getElementById("emailPopup").style.display="flex";
 
-  // Floating hearts inside popup
-  for (let i = 0; i < 15; i++) {
-    const heart = document.createElement("div");
-    heart.className = "floatingHeart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 80 + "vw";
-    heart.style.top = Math.random() * 60 + "vh";
-    heart.style.fontSize = (15 + Math.random()*25) + "px";
+  for(let i=0;i<15;i++){
+    const heart=document.createElement("div");
+    heart.className="floatingHeart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*80+"vw";
+    heart.style.top=Math.random()*60+"vh";
+    heart.style.fontSize=(15+Math.random()*25)+"px";
     document.getElementById("emailPopup").appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
+    setTimeout(()=>heart.remove(),4000);
   }
 }
 
 // No clicked
-function noClicked() {
-  document.getElementById("response").innerHTML = "That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
-}
+function noClicked() { document.getElementById("response").innerHTML="That’s okay. Some feelings are still beautiful, even when unreturned 🤍"; }
 
-// Send email
-function sendEmail() {
-  window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
-  document.getElementById("emailPopup").style.display = "none";
-}
+// Send email - single line
+function sendEmail(){window.location.href="mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";document.getElementById("emailPopup").style.display="none";}
 
 // Floating hearts background
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (12 + Math.random()*25) + "px";
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(12+Math.random()*25)+"px";
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 8000);
-}, 600);
+  setTimeout(()=>heart.remove(),8000);
+},600);
 
 // Falling petals
-setInterval(() => {
-  const petal = document.createElement("div");
-  petal.className = "petal";
-  petal.innerHTML = "🌸";
-  petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = (5 + Math.random()*5) + "s";
-  petal.style.top = "-50px"; // start above screen
+setInterval(()=>{
+  const petal=document.createElement("div");
+  petal.className="petal";
+  petal.innerHTML="🌸";
+  petal.style.left=Math.random()*100+"vw";
+  petal.style.animationDuration=(5+Math.random()*5)+"s";
+  petal.style.top="-50px";
   document.body.appendChild(petal);
-  setTimeout(() => petal.remove(), 10000);
-}, 700);
+  setTimeout(()=>petal.remove(),10000);
+},700);
 </script>
 
 </body>
