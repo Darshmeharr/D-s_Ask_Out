@@ -234,7 +234,7 @@ h1 span {
     <div class="question newMessage">New Message: Click Heart</div>
 
     <div class="icons">
-      <div class="icon" onclick="yesClicked()">💖</div> 
+      <div class="icon" onclick="heartClicked()">💖</div> 
       <div class="icon" onclick="noClicked()">🌙</div>
     </div>
 
@@ -271,6 +271,7 @@ function stopAllMusic() {
   });
 }
 
+// Play Batana
 function toggleBatana() {
   if (batanaSong.paused) {
     stopAllMusic();
@@ -283,13 +284,13 @@ function toggleBatana() {
   }
 }
 
-function yesClicked() {
+// Play Rabb Jaane when heart clicked
+function heartClicked() {
   stopAllMusic();
   mainSong.play().catch(()=>{});
-
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
 
-  // Email popup with romantic Mill Lake message
+  // Show popup with compliment and meeting info
   document.getElementById("emailPopup").style.display = "flex";
   document.getElementById("emailPopupContent").innerHTML = `
     <p>Your smile is radiant, just like always 💖<br>
@@ -300,7 +301,7 @@ function yesClicked() {
     <button onclick="sendEmail()">Send Email</button>
   `;
 
-  // Floating hearts in popup
+  // Floating hearts inside popup
   for (let i=0; i<15; i++){
     const heart = document.createElement("div");
     heart.className = "floatingHeart";
