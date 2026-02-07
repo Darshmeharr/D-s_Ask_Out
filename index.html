@@ -7,12 +7,12 @@
 * { box-sizing:border-box; }
 body {
   margin:0; min-height:100vh;
-  background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)), url("bg.JPG");
+  background:radial-gradient(circle at center, rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url("bg.JPG");
   background-size:cover; background-position:center;
   font-family:'Poppins',sans-serif; color:white; overflow-x:hidden;
   display:flex; justify-content:center; align-items:center;
 }
-.container { max-width:1200px; padding:25px; text-align:center; }
+.container { max-width:1200px; padding:25px; text-align:center; position:relative; }
 h1 { font-size:52px; margin-bottom:10px; animation:fadeIn 2s ease forwards; opacity:0; }
 h1 span { animation:pulse 1.5s infinite; }
 @keyframes pulse {50%{transform:scale(1.12);}}
@@ -26,9 +26,11 @@ h1 span { animation:pulse 1.5s infinite; }
 @keyframes fadeInText { to{opacity:1;} }
 .question { font-size:26px; margin-bottom:12px; animation:fadeInText 4s forwards; opacity:0; }
 .icons { display:flex; justify-content:center; gap:60px; position:relative; z-index:10; }
-.icon { font-size:60px; cursor:pointer; transition:0.3s; user-select:none; }
+.icon { font-size:60px; cursor:pointer; transition:0.3s; user-select:none; position:relative; }
+.icon::before { content:""; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); width:120%; height:120%; border-radius:50%; background:rgba(255,80,120,0.4); z-index:-1; transition:0.5s; }
+.icon:hover::before, .icon.active::before { transform:translate(-50%,-50%) scale(1); }
 .icon:hover { transform:scale(1.2); }
-#response { margin-top:18px; min-height:40px; }
+#response { margin-top:18px; min-height:40px; opacity:0; transition:opacity 1s; font-weight:bold;}
 .play-btn { margin:10px 5px; padding:12px 26px; font-size:15px; border-radius:30px; border:1px solid rgba(255,255,255,0.4); background:rgba(0,0,0,0.35); color:white; cursor:pointer; transition:0.3s; }
 .play-btn:hover { background:rgba(255,80,120,0.45); transform:scale(1.05);}
 #emailPopup { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; flex-direction:column;}
@@ -39,7 +41,7 @@ h1 span { animation:pulse 1.5s infinite; }
 .petal { position:fixed; font-size:18px; color:pink; animation:fall linear infinite; }
 @keyframes fall { to { transform:translateY(110vh) rotate(360deg); } }
 @keyframes fadeIn { to { opacity:1; } }
-#popupText { position:fixed; top:20%; left:50%; transform:translateX(-50%); background:rgba(255,80,120,0.95); color:#fffacd; font-size:22px; padding:25px 35px; border-radius:20px; z-index:9999; opacity:0; text-align:center; line-height:1.5; box-shadow:0 0 25px rgba(255,80,120,0.9); overflow:hidden; }
+#popupText { position:fixed; top:20%; left:50%; transform:translateX(-50%); background:rgba(255,80,120,0.95); color:#fffacd; font-size:22px; padding:25px 35px; border-radius:20px; z-index:9999; opacity:0; text-align:center; line-height:1.5; box-shadow:0 0 25px rgba(255,80,120,0.9); overflow:hidden; transition:opacity 1s; }
 </style>
 </head>
 <body>
@@ -77,11 +79,9 @@ h1 span { animation:pulse 1.5s infinite; }
     <div class="question">Will you be my Valentine?</div>
 
     <div class="icons">
-      <!-- Heart plays Rabb Jaane -->
-      <div class="icon" onclick="playRabbJaane()">💖</div>
+      <div class="icon" id="heartIcon" onclick="playRabbJaane()">💖</div>
     </div>
 
-    <!-- Buttons for other songs -->
     <button class="play-btn" onclick="playThinkingOfYou()">▶ Play: Thinking Of You</button>
     <button class="play-btn" onclick="playKhaab()">▶ Play: Khaab</button>
 
@@ -92,7 +92,6 @@ h1 span { animation:pulse 1.5s infinite; }
 </div>
 </div>
 
-<!-- Email Popup -->
 <div id="emailPopup">
   <div id="emailPopupContent">
     <p>Your Valentine email is ready to be sent! 💌</p>
@@ -101,41 +100,27 @@ h1 span { animation:pulse 1.5s infinite; }
 </div>
 
 <script>
-const rabbJaane = document.getElementById("rabbJaane");
-const thinkingOfYou = document.getElementById("thinkingOfYou");
-const khaab = document.getElementById("khaab");
-const popupText = document.getElementById("popupText");
+const rabbJaane=document.getElementById("rabbJaane");
+const thinkingOfYou=document.getElementById("thinkingOfYou");
+const khaab=document.getElementById("khaab");
+const popupText=document.getElementById("popupText");
+const response=document.getElementById("response");
+const heartIcon=document.getElementById("heartIcon");
 
-function stopAll() {
-  [rabbJaane, thinkingOfYou, khaab].forEach(a=>{a.pause(); a.currentTime=0;});
+function stopAll(){[rabbJaane,thinkingOfYou,khaab].forEach(a=>{a.pause();a.currentTime=0;});}
+
+function playRabbJaane(){
+  stopAll(); rabbJaane.play().catch(()=>{});
+  response.innerText="💖 Playing Rabb Jaane..."; response.style.opacity=1;
+  heartIcon.classList.add("active");
+  setTimeout(()=>response.style.opacity=0,4000);
+  setTimeout(()=>heartIcon.classList.remove("active"),500);
 }
 
-// Heart click -> Rabb Jaane
-function playRabbJaane() {
-  stopAll();
-  rabbJaane.play().catch(()=>{});
-  document.getElementById("response").innerText = "💖 Playing Rabb Jaane...";
-}
+function playThinkingOfYou(){stopAll(); thinkingOfYou.play().catch(()=>{}); response.innerText="🎵 Playing Thinking Of You..."; response.style.opacity=1; setTimeout(()=>response.style.opacity=0,4000);}
+function playKhaab(){stopAll(); khaab.play().catch(()=>{}); response.innerText="🎵 Playing Khaab..."; response.style.opacity=1; setTimeout(()=>response.style.opacity=0,4000);}
 
-// Button -> Thinking Of You
-function playThinkingOfYou() {
-  stopAll();
-  thinkingOfYou.play().catch(()=>{});
-  document.getElementById("response").innerText = "🎵 Playing Thinking Of You...";
-}
-
-// Button -> Khaab
-function playKhaab() {
-  stopAll();
-  khaab.play().catch(()=>{});
-  document.getElementById("response").innerText = "🎵 Playing Khaab...";
-}
-
-// Email popup
-function sendEmail() {
-  window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
-  document.getElementById("emailPopup").style.display = "none";
-}
+function sendEmail(){window.location.href="mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine."; document.getElementById("emailPopup").style.display="none";}
 
 // Floating hearts
 setInterval(()=>{const h=document.createElement("div"); h.className="heart"; h.innerHTML="❤️"; h.style.left=Math.random()*100+"vw"; h.style.fontSize=(12+Math.random()*25)+"px"; document.body.appendChild(h); setTimeout(()=>h.remove(),8000);},600);
