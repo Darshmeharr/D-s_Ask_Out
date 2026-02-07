@@ -2,395 +2,183 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Eeman</title>
+<title>Thinking of You</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  font-family: "Georgia", serif;
+}
 
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-    url("bg.JPG");
-  background-size: cover;
-  background-position: center;
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  overflow-x: hidden;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url("bg.jpg") center/cover no-repeat;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .container {
-  max-width: 1200px;
-  padding: 25px;
-  text-align: center;
-}
-
-h1 {
-  font-size: 52px;
-  margin-bottom: 10px;
-  animation: fadeIn 2s ease forwards;
-  opacity: 0;
-}
-
-h1 span {
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse { 50% { transform: scale(1.12); } }
-
-.signature {
-  font-size: 15px;
-  opacity: 0.75;
-  font-style: italic;
-  margin-bottom: 40px;
-  animation: fadeIn 3s ease forwards;
-  opacity: 0;
-}
-
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 40px;
-  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr;
+  gap: 30px;
+  align-items: center;
 }
 
 .frame {
-  width: 320px;
-  height: 420px;
-  border-radius: 25px;
-  border: 3px solid rgba(255, 80, 120, 0.85);
-  box-shadow: 0 18px 45px rgba(0,0,0,0.6);
-  overflow: hidden;
-  transition: transform 0.5s;
-}
-
-.frame:hover {
-  transform: scale(1.05) rotate(1deg);
+  border: 2px solid rgba(255,255,255,0.25);
+  padding: 10px;
 }
 
 .frame img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.middle {
-  max-width: 600px;
+  display: block;
 }
 
 .poem {
-  font-size: 18px;
-  line-height: 1.9;
+  text-align: center;
+  padding: 20px;
+}
+
+.poem h1 {
+  font-weight: normal;
+  letter-spacing: 2px;
   margin-bottom: 20px;
-  opacity: 0;
-  animation: fadeInText 3s forwards;
 }
 
-@keyframes fadeInText { to { opacity: 1; } }
-
-.question {
-  font-size: 26px;
-  margin-bottom: 12px;
-  animation: fadeInText 4s forwards;
-  opacity: 0;
-}
-
-.icons {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-}
-
-.icon {
-  font-size: 60px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.icon:hover {
-  transform: scale(1.2);
-}
-
-#response {
-  margin-top: 18px;
-  min-height: 40px;
-}
-
-.play-btn {
-  margin-top: 18px;
-  padding: 12px 26px;
-  font-size: 15px;
-  border-radius: 30px;
-  border: 1px solid rgba(255,255,255,0.4);
-  background: rgba(0,0,0,0.35);
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.play-btn:hover {
-  background: rgba(255,80,120,0.45);
-  transform: scale(1.05);
-}
-
-/* Email popup */
-#emailPopup {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-#emailPopupContent {
-  background: #111;
-  padding: 25px 40px;
-  border-radius: 20px;
-  text-align: center;
-  color: white;
-  font-size: 18px;
-  position: relative;
-  overflow: hidden; /* removes stray pink dot */
-}
-
-#emailPopup button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border-radius: 15px;
-  border: none;
-  cursor: pointer;
-  background: #ff5078;
-  color: white;
-  font-weight: bold;
+.poem p {
+  line-height: 1.7;
   font-size: 16px;
+  white-space: pre-line;
 }
 
-/* Floating hearts */
-.heart, .floatingHeart {
-  position: fixed;
-  font-size: 22px;
-  animation: float 8s linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes float { to { transform: translateY(-110vh); opacity: 0; } }
-
-/* Falling petals */
-.petal {
-  position: fixed;
+.valentine {
+  margin-top: 25px;
   font-size: 18px;
-  color: pink;
-  animation: fall linear infinite;
 }
 
-@keyframes fall {
-  to { transform: translateY(110vh) rotate(360deg); }
+.buttons {
+  margin-top: 20px;
 }
 
-@keyframes fadeIn { to { opacity: 1; } }
-
-/* Popup text */
-#popupText {
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 80, 120, 0.95);
-  color: #fffacd; /* bright text */
-  font-size: 22px;
-  padding: 25px 35px;
-  border-radius: 20px;
-  z-index: 9999;
-  opacity: 0;
-  text-align: center;
-  line-height: 1.5;
-  box-shadow: 0 0 25px rgba(255,80,120,0.9);
-  overflow: hidden; /* ensures no stray pixels */
+button {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  padding: 10px 18px;
+  margin: 6px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
+button:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+.song-switch {
+  margin-top: 15px;
+}
 </style>
 </head>
 
 <body>
 
-<!-- Songs -->
-<audio id="mainSong" loop>
-  <source src="Rabb_jaane.mp3" type="audio/mpeg">
-</audio>
+<div class="container">
 
-<audio id="apSong" loop>
+  <!-- LEFT IMAGE -->
+  <div class="frame">
+    <img src="left.jpg" alt="Memory">
+  </div>
+
+  <!-- POEM CENTER -->
+  <div class="poem">
+    <h1>Thinking of You</h1>
+
+    <p>
+this was the poem I don’t know when admiration
+quietly became affection,
+but somewhere between moments and silence,
+you stayed.
+
+Not as a passing thought,
+but as something gentle and certain,
+something I didn’t want to rush,
+or ruin with careless words.
+
+This isn’t built on noise or pressure,
+just honestly
+asking if our paths could align,
+even for a moment.
+    </p>
+
+    <div class="valentine">
+      Will you be my Valentine? ❤️
+    </div>
+
+    <div class="buttons">
+      <button onclick="sendMail()">💖</button>
+      <button onclick="toggleMusic()">🎵 Play / Pause</button>
+    </div>
+
+    <div class="song-switch">
+      <button onclick="changeSong(0)">Thinking of You</button>
+      <button onclick="changeSong(1)">Khaab</button>
+      <button onclick="changeSong(2)">Gabru</button>
+    </div>
+  </div>
+
+  <!-- RIGHT IMAGE -->
+  <div class="frame">
+    <img src="right.jpg" alt="Us">
+  </div>
+
+</div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
   <source src="thinking-of-you.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Popup text -->
-<div id="popupText"></div>
-
-<div class="container">
-<h1>EEMAN KAUR <span>❤️</span></h1>
-<p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
-
-<div class="main">
-
-  <div class="frame">
-    <img src="image1.JPG">
-  </div>
-
-  <div class="middle">
-    <div class="poem">
-      I don’t know when admiration<br>
-      quietly became affection,<br>
-      but somewhere between moments and silence,<br>
-      you stayed.<br><br>
-
-      Not as a passing thought,<br>
-      but as something gentle and certain,<br>
-      something I didn’t want to rush,<br>
-      or ruin with careless words.<br><br>
-
-      This isn’t built on noise or pressure,<br>
-      just honestly<br>
-      asking if our paths could align,<br>
-      even for a moment.<br><br>
-
-      <b>Thinking Of You Right Now </b>
-    </div>
-
-    <div class="question">Will you be my Valentine?</div>
-
-    <div class="icons">
-      <div class="icon" onclick="yesClicked()">💖</div>
-      <div class="icon" onclick="noClicked()">🌙</div>
-    </div>
-
-    <!-- Play button -->
-    <button id="playButton" class="play-btn" onclick="toggleApSong()">
-      ▶ Play: Thinking Of You – AP Dhillon
-    </button>
-
-    <div id="response"></div>
-  </div>
-
-  <div class="frame">
-    <img src="image2.JPG">
-  </div>
-
-</div>
-</div>
-
-<!-- Email Popup -->
-<div id="emailPopup">
-  <div id="emailPopupContent">
-    <p>Your Valentine email is ready to be sent! 💌</p>
-    <button onclick="sendEmail()">Send Email</button>
-  </div>
-</div>
-
 <script>
-const mainSong = document.getElementById("mainSong");
-const apSong = document.getElementById("apSong");
-const playButton = document.getElementById("playButton");
-const popupText = document.getElementById("popupText");
+const songs = [
+  "thinking-of-you.mp3",
+  "khaab.mp3",
+  "gabru.mp3"
+];
 
-function stopAllMusic() {
-  document.querySelectorAll("audio").forEach(a => {
-    a.pause();
-    a.currentTime = 0;
-  });
-}
+let music = document.getElementById("bgMusic");
+let isPlaying = false;
 
-// Play Thinking Of You on button click
-function toggleApSong() {
-  if (apSong.paused) {
-    stopAllMusic();
-    apSong.play().then(() => {
-      playButton.textContent = "⏸ Playing: Thinking Of You – AP Dhillon";
-    }).catch(err => {
-      console.log("Could not play Thinking Of You:", err);
-      alert("Cannot play the song! Check the file name or format.");
-    });
+function toggleMusic() {
+  if (!isPlaying) {
+    music.play();
+    isPlaying = true;
   } else {
-    apSong.pause();
-    playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
+    music.pause();
+    isPlaying = false;
   }
 }
 
-// Optional: reset button text when song ends
-apSong.addEventListener("ended", () => {
-  playButton.textContent = "▶ Play: Thinking Of You – AP Dhillon";
-});
-
-// Yes clicked - show popup + floating hearts
-function yesClicked() {
-  stopAllMusic();
-  mainSong.play().catch(()=>{});
-  document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
-
-  // Popup text
-  popupText.innerHTML = `
-    Today is February 6th, 2026! 💖<br>
-    Wear something in <b>Magenta</b>, I'll be waiting on <b>top floor of SUB</b> at <b>2 PM</b>.<br>
-    Come all alone...<br>
-    <i>Every moment with you feels like a dream I never want to wake from 🌸</i>
-  `;
-  popupText.style.opacity = 1;
-  setTimeout(() => popupText.style.opacity = 0, 12000);
-
-  document.getElementById("emailPopup").style.display = "flex";
-
-  // Floating hearts inside popup
-  for (let i = 0; i < 15; i++) {
-    const heart = document.createElement("div");
-    heart.className = "floatingHeart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 80 + "vw";
-    heart.style.top = Math.random() * 60 + "vh";
-    heart.style.fontSize = (15 + Math.random()*25) + "px";
-    document.getElementById("emailPopup").appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
-  }
+function changeSong(index) {
+  music.src = songs[index];
+  music.play();
+  isPlaying = true;
 }
 
-// No clicked
-function noClicked() {
-  document.getElementById("response").innerHTML = "That’s okay. Some feelings are still beautiful, even when unreturned 🤍";
+function sendMail() {
+  window.location.href =
+    "mailto:heremail@example.com" +
+    "?subject=Thinking of You 🤍" +
+    "&body=Hi,%0D%0A%0D%0A" +
+    "This little website carries something I’ve been holding quietly.%0D%0A" +
+    "No pressure, no rush — just honesty.%0D%0A%0D%0A" +
+    "Would you like to see where this could go?";
 }
-
-// Send email
-function sendEmail() {
-  window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
-  document.getElementById("emailPopup").style.display = "none";
-}
-
-// Floating hearts background
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (12 + Math.random()*25) + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 8000);
-}, 600);
-
-// Falling petals
-setInterval(() => {
-  const petal = document.createElement("div");
-  petal.className = "petal";
-  petal.innerHTML = "🌸";
-  petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = (5 + Math.random()*5) + "s";
-  petal.style.top = "-50px"; // start above screen
-  document.body.appendChild(petal);
-  setTimeout(() => petal.remove(), 10000);
-}, 700);
 </script>
 
 </body>
