@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <title>For Eeman</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("bg.JPG");
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("bg.JPG");
   background-size: cover;
   background-position: center;
   font-family: 'Poppins', sans-serif;
@@ -23,144 +23,165 @@ body {
 }
 
 .container {
-  max-width: 1200px;
-  padding: 25px;
+  width: 95%;
+  max-width: 1300px;
+  padding: 40px;
   text-align: center;
 }
 
 h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 65px;
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
   margin-bottom: 5px;
+  letter-spacing: 3px;
   animation: fadeIn 2s ease forwards;
   opacity: 0;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
-h1 span { display: inline-block; animation: pulse 1.5s infinite; }
-@keyframes pulse { 50% { transform: scale(1.2); } }
+h1 span { display: inline-block; animation: pulse 1.5s infinite; color: #ff5078; }
+@keyframes pulse { 50% { transform: scale(1.1); } }
 
 .signature {
-  font-size: 16px;
-  opacity: 0.8;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  opacity: 0.9;
   font-style: italic;
-  letter-spacing: 1px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   animation: fadeIn 3s ease forwards;
   opacity: 0;
 }
 
-.main {
+.main-layout {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  flex-wrap: wrap;
+  gap: 50px;
+  flex-wrap: nowrap; /* Keeps pictures on sides */
 }
 
 .frame {
-  width: 300px;
-  height: 400px;
-  border-radius: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  flex: 0 0 320px;
+  height: 450px;
+  border-radius: 15px;
+  border: 8px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
   overflow: hidden;
-  transition: 0.5s;
+  transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.frame:hover { transform: translateY(-10px) rotate(2deg); }
+.frame:hover { transform: scale(1.03); border-color: rgba(255, 255, 255, 0.4); }
 .frame img { width: 100%; height: 100%; object-fit: cover; }
 
-.middle {
-  max-width: 500px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 30px;
-  border-radius: 30px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
+.middle-content {
+  flex: 1;
+  max-width: 550px;
+  background: rgba(255, 255, 255, 0.92); /* Less transparent for elegance */
+  padding: 40px;
+  border-radius: 20px;
+  color: #1a1a1a; /* Darker text for readability */
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,1);
 }
 
 .poem {
-  font-size: 18px;
-  line-height: 1.8;
-  margin-bottom: 25px;
-  font-style: italic;
-}
-
-.new-message {
-  color: #ff4d4d;
-  font-weight: 600;
+  font-family: 'Playfair Display', serif;
   font-size: 20px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.new-message-cue {
+  color: #d63031;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
   display: block;
-  margin-top: 15px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  animation: glow 1.5s infinite alternate;
+  margin-top: 20px;
+  letter-spacing: 1px;
+  animation: softGlow 2s infinite alternate;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 5px #ff4d4d; }
-  to { text-shadow: 0 0 20px #ff4d4d, 0 0 30px #ff0000; }
+@keyframes softGlow {
+  from { text-shadow: 0 0 2px rgba(214, 48, 49, 0.2); }
+  to { text-shadow: 0 0 12px rgba(214, 48, 49, 0.6); transform: scale(1.02); }
 }
 
-.question { font-size: 28px; margin: 20px 0; font-weight: 600; }
-.icons { display: flex; justify-content: center; gap: 50px; }
-.icon { font-size: 65px; cursor: pointer; transition: 0.3s; }
-.icon:hover { transform: scale(1.25); filter: drop-shadow(0 0 15px white); }
+.question { 
+  font-family: 'Playfair Display', serif;
+  font-size: 30px; 
+  margin: 25px 0; 
+  font-weight: 700; 
+  color: #1a1a1a;
+}
+
+.icons { display: flex; justify-content: center; gap: 60px; }
+.icon { font-size: 70px; cursor: pointer; transition: 0.4s; filter: grayscale(20%); }
+.icon:hover { transform: scale(1.2); filter: grayscale(0%); }
 
 .play-btn {
-  margin-top: 25px;
-  padding: 12px 30px;
-  border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.5);
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
+  margin-top: 30px;
+  padding: 14px 35px;
+  border-radius: 5px;
+  border: 1px solid #1a1a1a;
+  background: transparent;
+  color: #1a1a1a;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
 }
-.play-btn:hover { background: #ff5078; border-color: transparent; }
+.play-btn:hover { background: #1a1a1a; color: white; }
 
+/* BLUE DATE INFO BOX */
 #popupText {
-  position: fixed; top: 20%; left: 50%; transform: translateX(-50%);
-  background: rgba(135, 206, 250, 0.98); color: #003366; 
-  font-size: 22px; font-weight: 600; padding: 30px 40px; border-radius: 20px;
-  z-index: 9999; opacity: 0; text-align: center; line-height: 1.6;
-  box-shadow: 0 0 40px rgba(135, 206, 250, 0.8); transition: 0.8s;
-  border: 3px solid #003366; pointer-events: none;
+  position: fixed; top: 25%; left: 50%; transform: translateX(-50%);
+  background: #87CEFA; color: #003366; 
+  font-size: 22px; font-weight: 700; padding: 35px 50px; border-radius: 10px;
+  z-index: 9999; opacity: 0; text-align: center; line-height: 1.7;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5); transition: 0.8s;
+  border: 4px double #003366; pointer-events: none;
+  font-family: 'Playfair Display', serif;
 }
 
-#emailPopup {
-  display: none; position: fixed; left: 0; right: 0; bottom: 8%; 
-  z-index: 10000; justify-content: center;
-}
+#emailPopup { display: none; position: fixed; left: 0; right: 0; bottom: 8%; z-index: 10000; justify-content: center; }
 #emailPopupContent {
-  background: rgba(20, 20, 20, 0.95); padding: 15px 35px; border-radius: 50px; 
-  color: white; border: 1px solid #ff5078; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  background: #1a1a1a; padding: 20px 40px; border-radius: 10px; 
+  color: white; border-left: 5px solid #ff5078; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 #emailPopup button {
-  margin-left: 15px; padding: 8px 25px; border-radius: 25px; border: none;
+  margin-left: 20px; padding: 10px 30px; border: none;
   background: #ff5078; color: white; font-weight: bold; cursor: pointer;
 }
 
-.heart, .floatingHeart { position: fixed; animation: float 8s linear infinite; z-index: 1; }
-@keyframes float { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+.heart { position: fixed; animation: float 10s linear infinite; z-index: 1; opacity: 0.5; }
+@keyframes float { 
+    0% { transform: translateY(110vh) rotate(0deg); }
+    100% { transform: translateY(-110vh) rotate(360deg); } 
+}
 @keyframes fadeIn { to { opacity: 1; } }
+
+/* Responsive for mobile */
+@media (max-width: 900px) {
+  .main-layout { flex-direction: column; }
+  .frame { width: 100%; max-width: 320px; height: 400px; }
+}
 </style>
 </head>
 <body>
 
-<audio id="mainSong" loop preload="auto"><source src="Rabb_jaane.mp3" type="audio/mpeg"></audio>
-<audio id="apSong" loop preload="auto"><source src="Batana.mp3" type="audio/mpeg"></audio>
+<audio id="mainSong" loop><source src="Rabb_jaane.mp3" type="audio/mpeg"></audio>
+<audio id="apSong" loop><source src="Batana.mp3" type="audio/mpeg"></audio>
 
 <div id="popupText"></div>
 
 <div class="container">
-  <h1>EEMAN KAUR <span>❤️</span></h1>
+  <h1>EEMAN KAUR <span>❤</span></h1>
   <p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
 
-  <div class="main">
+  <div class="main-layout">
     <div class="frame"><img src="image1.JPG"></div>
 
-    <div class="middle">
+    <div class="middle-content">
       <div class="poem">
         "I didn’t plan for my heart to wander your way,<br>
         But in the quiet spaces between my thoughts,<br>
@@ -169,7 +190,7 @@ h1 span { display: inline-block; animation: pulse 1.5s infinite; }
         But as a steady flame through the coldest night.<br>
         This is just me, simply being true—<br>
         Asking if I could spend my journey with you."<br>
-        <span class="new-message">💌 New Message: Click the Heart</span>
+        <span class="new-message-cue">❤ NEW MESSAGE: CLICK THE HEART</span>
       </div>
 
       <div class="question">Will you be my Valentine?</div>
@@ -179,8 +200,8 @@ h1 span { display: inline-block; animation: pulse 1.5s infinite; }
         <div class="icon" onclick="noClicked()">🌙</div>
       </div>
 
-      <button id="playButton" class="play-btn" onclick="toggleApSong()">▶ Play: Batana - Zack Knight</button>
-      <div id="response" style="margin-top: 15px;"></div>
+      <button id="playButton" class="play-btn" onclick="toggleApSong()">▶ LISTENING: Batana - Zack Knight</button>
+      <div id="response" style="margin-top: 15px; font-weight: bold;"></div>
     </div>
 
     <div class="frame"><img src="image2.JPG"></div>
@@ -189,8 +210,8 @@ h1 span { display: inline-block; animation: pulse 1.5s infinite; }
 
 <div id="emailPopup">
   <div id="emailPopupContent">
-    Your Valentine email is ready! 💌
-    <button onclick="sendEmail()">Send Now</button>
+    Your Valentine confirmation is ready... 💌
+    <button onclick="sendEmail()">SEND NOW</button>
   </div>
 </div>
 
@@ -208,62 +229,52 @@ function stopAll() {
 function toggleApSong() {
   if (apSong.paused) {
     stopAll();
-    apSong.play().then(() => {
-      playButton.textContent = "⏸ Playing: Batana - Zack Knight";
-    }).catch(err => alert("Missing: Batana.mp3"));
+    apSong.play().catch(err => alert("Audio File 'Batana.mp3' not found in folder."));
+    playButton.textContent = "⏸ PAUSE: Batana";
   } else {
     apSong.pause();
-    playButton.textContent = "▶ Play: Batana - Zack Knight";
+    playButton.textContent = "▶ PLAY: Batana";
   }
 }
 
 function yesClicked() {
   stopAll();
-  mainSong.play().catch(e => alert("Missing: Rabb_jaane.mp3"));
+  mainSong.play().catch(e => console.log("Rabb_jaane.mp3 missing"));
   
   document.getElementById("response").innerHTML = "You've made my world a lot brighter 🤍";
-  
+  document.getElementById("response").style.color = "#d63031";
+
   popupText.innerHTML = `
-    Today is February 7th, 2026! ❤️<br>
-    Wear something in <b>Blue</b>.<br>
+    Today is February 7th, 2026 ❤️<br>
+    Wear something in <b style="color:#003366; text-decoration:underline;">Blue</b>.<br>
     I'll be waiting at <b>Mill Lake Bridge</b> at <b>7 PM</b>.<br>
     I'll only be there for <b>20 minutes</b>... don't be late.<br><br>
-    <i>"If the stars are just memories of light, <br> I’d rather write a new story with you tonight." 🌸</i>
+    <i style="font-size:18px;">"If the stars are just memories of light, <br> I’d rather write a new story with you tonight." 🌸</i>
   `;
   popupText.style.opacity = 1;
 
-  setTimeout(() => { document.getElementById("emailPopup").style.display = "flex"; }, 2000);
-  setTimeout(() => { popupText.style.opacity = 0; }, 18000);
-
-  // Big heart explosion
-  for (let i = 0; i < 20; i++) {
-    const h = document.createElement("div");
-    h.className = "floatingHeart";
-    h.innerHTML = "💖";
-    h.style.left = Math.random() * 90 + "vw";
-    h.style.top = Math.random() * 80 + "vh";
-    h.style.fontSize = (20 + Math.random()*30) + "px";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 4000);
-  }
+  setTimeout(() => { document.getElementById("emailPopup").style.display = "flex"; }, 2500);
+  setTimeout(() => { popupText.style.opacity = 0; }, 20000);
 }
 
-function noClicked() { document.getElementById("response").innerHTML = "That’s okay. 🤍"; }
+function noClicked() { 
+    document.getElementById("response").innerHTML = "That’s okay. Your happiness matters most. 🤍"; 
+}
 
 function sendEmail() {
   window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
 }
 
-// Background falling hearts
+// Background Floating Hearts
 setInterval(() => {
   const h = document.createElement("div");
-  h.className = "heart"; h.innerHTML = "❤️";
+  h.className = "heart"; h.innerHTML = "❤";
   h.style.left = Math.random() * 100 + "vw";
-  h.style.top = "105vh";
   h.style.fontSize = (15 + Math.random()*20) + "px";
+  h.style.color = "rgba(255,255,255,0.3)";
   document.body.appendChild(h);
-  setTimeout(() => h.remove(), 8000);
-}, 800);
+  setTimeout(() => h.remove(), 10000);
+}, 1000);
 </script>
 
 </body>
