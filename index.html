@@ -134,7 +134,7 @@ h2, p {
 }
 .song-label:hover { background: white; color: black; border-color: white; }
 
-/* POPUP BOX */
+/* EMAIL POPUP BOX */
 #popupBox {
   position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
   background: #ffb6c1; color: #003366; 
@@ -142,6 +142,21 @@ h2, p {
   text-align: center; z-index: 5000; display: none;
   box-shadow: 0 0 100px rgba(0,0,0,0.9);
   font-family: 'Playfair Display', serif;
+  max-width: 400px;
+}
+
+#popupBox h2 {
+  margin-top:0;
+  font-size: 32px;
+  color: #ff1a75;
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+}
+
+#popupBox p {
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #003366;
 }
 
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
@@ -188,16 +203,18 @@ h2, p {
   </div>
 </div>
 
+<!-- Romantic Email Sending Popup -->
 <div id="popupBox">
-  <h2 style="margin-top:0;">It's a Date! ❤️</h2>
-  <p style="font-size: 24px; font-weight:800; line-height: 1.6;">
-    Today is February 7th, 2026<br>
-    Wear something in <span style="text-decoration: underline;">Blue</span>.<br>
-    Location: Mill Lake Bridge<br>
-    Time: 7:00 PM<br><br>
-    <i style="font-size: 18px;">"I'll only be there for 20 minutes... don't be late."</i>
+  <h2>💌 Valentine Sent!</h2>
+  <p>
+    My dearest Eeman,<br>
+    I'll be at Mill Lake at 7 PM, waiting just for you.<br>
+    I’ve been thinking about you every single moment,<br>
+    and I cannot wait to see your smile. 😍<br><br>
+    Click below to send your answer back to me, my heart awaits.
   </p>
-  <button onclick="this.parentElement.style.display='none'" style="padding:10px 25px; cursor:pointer; font-weight:bold; border-radius:10px;">Close</button>
+  <button onclick="this.parentElement.style.display='none';" 
+          style="padding:10px 25px; cursor:pointer; font-weight:bold; border-radius:10px; margin-top:15px;">Close</button>
 </div>
 
 <script>
@@ -224,12 +241,13 @@ function playBatana() {
 function triggerYes() {
   silence();
   rabb.play().catch(e => console.log("Rabb Jaane file is missing."));
-  document.getElementById("responseMsg").innerHTML = "You've made my world a lot brighter 🤍";
+  document.getElementById("responseMsg").innerHTML = "You’ve made my world brighter 🤍";
   document.getElementById("popupBox").style.display = "block";
   
+  // Mailto link to send Valentine email after 3 seconds
   setTimeout(() => {
-    window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine.";
-  }, 5000);
+    window.location.href = "mailto:darshmehar.dates.eeman@gmail.com?subject=Valentine&body=Yes, I would love to be your Valentine. 💖";
+  }, 3000);
 }
 
 function triggerNo() {
