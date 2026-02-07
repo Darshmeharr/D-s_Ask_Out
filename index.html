@@ -63,7 +63,7 @@ h1 span {
   width: 320px;
   height: 420px;
   border-radius: 25px;
-  border: 3px solid rgba(255, 80, 120, 0.85); /* Back to Original Pink/Magenta */
+  border: 3px solid rgba(255, 80, 120, 0.85); 
   box-shadow: 0 18px 45px rgba(0,0,0,0.6);
   overflow: hidden;
   transition: transform 0.5s;
@@ -173,7 +173,6 @@ h1 span {
   font-size: 16px;
 }
 
-/* Floating hearts and Petals */
 .heart, .floatingHeart {
   position: fixed;
   font-size: 22px;
@@ -196,24 +195,26 @@ h1 span {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* THE BLUE POPUP BOX */
+/* SKY BLUE POPUP BOX */
 #popupText {
   position: fixed;
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 102, 204, 0.95); /* Blue background */
-  color: #fffacd; 
-  font-size: 22px;
+  background: rgba(135, 206, 250, 0.98); 
+  color: #003366; 
+  font-size: 21px;
+  font-weight: 600;
   padding: 25px 35px;
   border-radius: 20px;
   z-index: 9999;
   opacity: 0;
   text-align: center;
   line-height: 1.5;
-  box-shadow: 0 0 25px rgba(0, 102, 204, 0.8); /* Blue Glow */
+  box-shadow: 0 0 30px rgba(135, 206, 250, 0.7);
   overflow: hidden; 
   transition: opacity 0.5s;
+  border: 2px solid #003366;
 }
 </style>
 </head>
@@ -231,10 +232,10 @@ h1 span {
 <div id="popupText"></div>
 
 <div class="container">
-<h1>EEMAN KAUR <span>❤️</span></h1> <p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
+<h1>EEMAN KAUR <span>❤️</span></h1>
+<p class="signature">From Darshmehar Singh to Eemanjot Kaur</p>
 
 <div class="main">
-
   <div class="frame">
     <img src="image1.JPG">
   </div>
@@ -262,7 +263,8 @@ h1 span {
     <div class="question">Will you be my Valentine?</div>
 
     <div class="icons">
-      <div class="icon" onclick="yesClicked()">💖</div> <div class="icon" onclick="noClicked()">🌙</div>
+      <div class="icon" onclick="yesClicked()">💖</div>
+      <div class="icon" onclick="noClicked()">🌙</div>
     </div>
 
     <button id="playButton" class="play-btn" onclick="toggleApSong()">
@@ -275,7 +277,6 @@ h1 span {
   <div class="frame">
     <img src="image2.JPG">
   </div>
-
 </div>
 </div>
 
@@ -319,20 +320,19 @@ function yesClicked() {
 
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
 
-  // BLUE POPUP CONTENT
+  // UPDATED: 20 MINUTE LIMIT & NEW CREATIVE LINE
   popupText.innerHTML = `
-    Today is February 7th, 2026! 💙<br>
+    Today is February 7th, 2026! ❤️<br>
     Wear something in <b>Blue</b>.<br>
-    I'll be waiting at <b>Mill Lake (Gurudwara side)</b> at <b>7 PM</b>.<br>
-    Come all alone...<br>
-    <i>Every moment with you feels like a dream I never want to wake from 🌸</i>
+    I'll be waiting at <b>Mill Lake Bridge</b> at <b>7 PM</b>.<br>
+    I'll only be there for <b>20 minutes</b>, so don't be late...<br><br>
+    <i>"If the stars are just memories of light, <br> I’d rather write a new story with you tonight." 🌸</i>
   `;
   popupText.style.opacity = 1;
-  setTimeout(() => popupText.style.opacity = 0, 12000);
+  setTimeout(() => popupText.style.opacity = 0, 18000);
 
   document.getElementById("emailPopup").style.display = "flex";
 
-  // Pink hearts floating inside email popup
   for (let i = 0; i < 15; i++) {
     const heart = document.createElement("div");
     heart.className = "floatingHeart";
@@ -354,7 +354,6 @@ function sendEmail() {
   document.getElementById("emailPopup").style.display = "none";
 }
 
-// Restored Background Red Hearts
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -365,7 +364,6 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 8000);
 }, 600);
 
-// Restored Falling Petals
 setInterval(() => {
   const petal = document.createElement("div");
   petal.className = "petal";
