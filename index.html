@@ -138,39 +138,36 @@ h1 span {
   transform: scale(1.05);
 }
 
-/* Email popup */
+/* EMAIL BAR POSITIONED LOWER */
 #emailPopup {
   display: none;
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85);
-  z-index: 9999;
+  left: 0; right: 0; bottom: 10%; /* Moved it to the bottom area */
+  z-index: 10000;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
 #emailPopupContent {
-  background: #111;
-  padding: 25px 40px;
-  border-radius: 20px;
+  background: rgba(17, 17, 17, 0.9);
+  padding: 15px 30px;
+  border-radius: 50px; /* Made it look more like a bar */
   text-align: center;
   color: white;
-  font-size: 18px;
-  position: relative;
-  overflow: hidden; 
+  font-size: 16px;
+  border: 1px solid rgba(255, 80, 120, 0.5);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
 #emailPopup button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border-radius: 15px;
+  margin-left: 15px;
+  padding: 8px 20px;
+  border-radius: 25px;
   border: none;
   cursor: pointer;
   background: #ff5078;
   color: white;
   font-weight: bold;
-  font-size: 16px;
 }
 
 .heart, .floatingHeart {
@@ -195,7 +192,7 @@ h1 span {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* SKY BLUE POPUP BOX */
+/* SKY BLUE POPUP BOX (MAIN INFO) */
 #popupText {
   position: fixed;
   top: 20%;
@@ -282,8 +279,8 @@ h1 span {
 
 <div id="emailPopup">
   <div id="emailPopupContent">
-    <p>Your Valentine email is ready to be sent! 💌</p>
-    <button onclick="sendEmail()">Send Email</button>
+    Your Valentine email is ready! 💌
+    <button onclick="sendEmail()">Send Now</button>
   </div>
 </div>
 
@@ -320,7 +317,6 @@ function yesClicked() {
 
   document.getElementById("response").innerHTML = "You just made something beautiful happen 🤍";
 
-  // UPDATED: 20 MINUTE LIMIT & NEW CREATIVE LINE
   popupText.innerHTML = `
     Today is February 7th, 2026! ❤️<br>
     Wear something in <b>Blue</b>.<br>
@@ -329,9 +325,13 @@ function yesClicked() {
     <i>"If the stars are just memories of light, <br> I’d rather write a new story with you tonight." 🌸</i>
   `;
   popupText.style.opacity = 1;
-  setTimeout(() => popupText.style.opacity = 0, 18000);
 
-  document.getElementById("emailPopup").style.display = "flex";
+  // DELAY THE EMAIL BAR SO IT APPEARS SLIGHTLY AFTER
+  setTimeout(() => {
+    document.getElementById("emailPopup").style.display = "flex";
+  }, 1000);
+
+  setTimeout(() => popupText.style.opacity = 0, 18000);
 
   for (let i = 0; i < 15; i++) {
     const heart = document.createElement("div");
@@ -340,7 +340,7 @@ function yesClicked() {
     heart.style.left = Math.random() * 80 + "vw";
     heart.style.top = Math.random() * 60 + "vh";
     heart.style.fontSize = (15 + Math.random()*25) + "px";
-    document.getElementById("emailPopup").appendChild(heart);
+    document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 4000);
   }
 }
